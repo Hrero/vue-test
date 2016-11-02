@@ -8,8 +8,8 @@ Vue.use(ElementUI);
 import App from './App.vue'
 
 import 'element-ui/lib/theme-default/index.css'
-import "../css/index.scss";
-import "../css/app.scss";
+import "./css/index.scss";
+import "./css/app.scss";
 
 new Vue({
     el: '#app',

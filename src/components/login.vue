@@ -24,7 +24,7 @@
 </template>
 
 <script>
-    import "../../css/login.scss";
+    import "../css/login.scss";
     export default {
         data () {
             return {
