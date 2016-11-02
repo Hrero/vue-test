@@ -1,0 +1,19 @@
+#login {
+    height: 220px;
+    .center {
+        text-align: center;
+    }
+    .blockCenter {
+        width:60px;
+        display:block;
+        margin: 0 auto;
+    }
+    h1 {
+        margin-bottom: 30px;
+    }
+    .errorLogin {
+        color: red;
+        text-align: center;
+        padding-top: 20px;
+    }
+}
