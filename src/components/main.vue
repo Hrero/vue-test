@@ -1,12 +1,15 @@
 <template>
     <div id="main" class="positionCenter">
         <h2>易教空间资源库系统录入平台</h2>
-
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-fangzi"></use>
+        </svg>
     </div>
 </template>
 
 <script>
-    import "../css/login.scss";
+    import "../css/main.scss";
+    import "../iconfont/iconfont.js"
     export default {
         data () {
             return {
