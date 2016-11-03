@@ -1,8 +1,8 @@
 var global = require("./httpConfig.js");
-var login = require("./login.js");
-var login2 = require("./login2.js");
+var port3000 = require("./port3000.js");
+var public = require("./public.js");
 
-var portArr = [login,login2];
+var portArr = [port3000,public];
 var portObj = {};
 for(var i=0; i<portArr.length; i++){
     var item = portArr[i];

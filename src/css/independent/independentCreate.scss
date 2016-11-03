@@ -1,0 +1,33 @@
+#independentCreate {
+    width: 60%;
+    overflow: hidden;
+    border: 1px solid #ddd;
+    margin: 20px auto;
+    padding: 20px;
+    h3 {
+        text-align: center;
+    }
+    .frequencyIndex {
+        width: 70%;
+        float: left;
+    }
+    .frequencyType {
+        width: 30%;
+        float: left;
+    }
+    .lists {
+        color: white;
+        margin-right: 10px;
+        border-radius: 5px;
+        padding: 5px;
+    }
+    .clickActive {
+        background: green;
+    }
+    .listActive {
+        background: #777;
+    }
+    .btnCenter {
+        text-align:center;
+    }
+}

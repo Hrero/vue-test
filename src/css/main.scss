@@ -1,9 +1,22 @@
 #main {
   .icon {
-    width: 1em; height: 1em;
-    vertical-align: -0.15em;
-    fill: currentColor;
-    overflow: hidden;
-    color:red;
+      width: 1em; height: 1em;
+      vertical-align: -0.15em;
+      fill: currentColor;
+      overflow: hidden;
+      color:#c0ccda;
+  }
+  li:hover {
+      .icon{
+          color: #20a0ff;
+      }
+      color: #20a0ff;
+  }
+  .is-active .icon {
+      color: #20a0ff;
+  }
+  .contentBox {
+      height: 90%;
+      overflow: auto;
   }
 }

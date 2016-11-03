@@ -1,7 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
-var port = require("./src/port/index.js");
-var global = require("./src/port/httpConfig.js");
+var port = require("./src/config/index.js");
+var global = require("./src/config/httpConfig.js");
 
 module.exports = {
   entry: './src/main.js',
