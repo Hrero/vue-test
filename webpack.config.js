@@ -13,6 +13,10 @@ module.exports = {
   module: {
     rules: [
       {
+        test: require.resolve('jquery'),
+        loader: 'expose?jQuery!expose?$'
+      },
+      {
         test: /\.vue$/,
         loader: 'vue',
         options: {
@@ -28,15 +32,9 @@ module.exports = {
         test:/\.css$/,
         loader:'style!css'
       },
-      {
-        test: /\.(png|jpg|gif|svg)$/,
-        loader: 'file',
-        options: {
-          name: '[name].[ext]?[hash]'
-        }
-      },
       { test: /\.scss$/, loader: 'style!css!sass?sourceMap', exclude: /node_modules/ },
-      { test:/\.(png|woff|svg|ttf|eot)$/,loader:'url-loader?limit=10000'}//限制大小小于10k的
+      { test:/\.(woff|svg|ttf|eot)$/,loader:'url-loader?limit=10000'},//限制大小小于10k的
+      { test:/\.(png|jpg|gif)$/,loader:'url-loader?name=image/[hash:8].[name].[ext]' }
     ]
   },
   resolve: {
