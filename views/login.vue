@@ -1,25 +1,39 @@
 <template>
     <div id="login" class="positionCenter">
-        <el-row :gutter="20">
-            <el-col :span="6" :offset="8">
-                <div class="grid-content bg-purple">
-                    <h1 class="center">资源库系统录入平台</h1>
-                    <el-form label-width="80px">
-                        <el-form-item label="用户名：">
-                            <el-input v-model="userName" @focus="clickInput()"></el-input>
-                        </el-form-item>
-                        <el-form-item label="密码：">
-                            <el-input v-model="userPassword" @focus="clickInput()"></el-input>
-                        </el-form-item>
-                        <el-checkbox v-model="checked">记住用户名</el-checkbox>
-                    </el-form>
-                    <el-button type="primary" class="loginBtn blockCenter" @click="goLogin()">登录</el-button>
-                    <div  class="errorLogin" name="errorLogin" v-show="error">
-                        {{message}}
+        <h1 class="center">资源库系统录入平台</h1>
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">用户名</label>
+                <div class="col-sm-10">
+                    <input type="email" class="form-control" id="inputEmail3" placeholder="Email" v-model="userName">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputPassword3" class="col-sm-2 control-label">密码</label>
+                <div class="col-sm-10">
+                    <input type="password" class="form-control" id="inputPassword3" placeholder="Password" v-model="userPassword">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" v-model="checked"> 记住我
+                        </label>
                     </div>
                 </div>
-            </el-col>
-        </el-row>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="button" class="btn btn-default" @click="goLogin()">登录</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10 errorLogin" v-show="error">
+                    {{message}}
+                </div>
+            </div>
+        </form>
     </div>
 </template>
 
@@ -50,7 +64,7 @@
                             localStorage.removeItem("v4UserName");
                             localStorage.removeItem("v4UserPassword");
                         }
-                        this.$emit("increment","MainCom");
+                        this.$emit("increment","MainComponent");
                     } else {
                         if(this.userName == "" || this.userPassword == ""){
                             this.message = "“用户名”或“密码”不能为空";

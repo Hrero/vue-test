@@ -1,15 +1,16 @@
 <template>
-    <el-form-item label="上课形式">
-        <el-input v-model="name" v-on:focus="showBox()" placeholder="上课形式"></el-input>
-        <el-input v-model="code" placeholder="上课形式" type="hidden"></el-input>
-        <!--<categories :data-show="flag.categories" data-id="categoriesCodeZtree" v-on:increment="incrementTotal"></categories>-->
-        <div :id="dataId"  v-show="dataShow" class="ztree" :style="style"></div>
-    </el-form-item>
+        <div style="position: relative;" class="categoriesBox">
+            <label>上课形式</label>
+            <input type="text" v-model="name" readonly="readonly" class="form-control" placeholder="课程类别" @focus="showBox()" />
+            <input type="hidden" v-model="code" />
+           <!-- <div id="categoriesZtreedemo" class="ztree" style="display: none; position: absolute; top: 63px; left: -100px; background: #88e2e1; width: 350px;z-index: 9999">
+            </div>-->
+            <div :id="dataId"  v-show="isShow" class="ztree" :style="style" @mouseleave="hideBox()"></div>
+        </div>
 </template>
 
 <script>
-    import $ from 'expose?$!jquery'
-    import 'ztree'
+    import independent from "../../utils/course/independent.js"
     export default{
         props: {
             dataId: {
@@ -21,27 +22,29 @@
             return {
                 style:{
                     position: "absolute",
-                    top: "40px",
+                    top: "60px",
                     left: 0,
                     background: "rgb(136, 226, 225)",
                     width: "350px",
                     zIndex: "9999"
                 },
-                dataShow: false,
                 name: "",
-                code: ""
+                code: "",
+                isShow: false
             }
         },
         methods: {
             showBox () {
-                this.dataShow = true;
+                this.isShow = true;
+            },
+            hideBox () {
+                this.isShow = false;
             }
         },
         created () {
             var self = this;
-            this.$http.get("/courseCategoriesGetAll").then((result) => {
+            this.$http.get(independent.courseCategoriesGetAll).then((result) => {
                 var data = result.data;
-                console.log(data);
                 // zTree 的参数配置，深入使用请参考 API 文档（setting 配置详解）
                 var setting = {
                     view : {
@@ -69,14 +72,13 @@
                     console.log(treeNode);
                     self.name = treeNode.name;
                     self.code = treeNode.ctbCode;
-                    self.dataShow = false;
+                    self.isShow = false;
                     self.$emit("increment",treeNode.name,treeNode.ctbCode);
                 }
                 // zTree 的数据属性，深入使用请参考 API 文档（zTreeNode 节点数据详解）
                 var zTreeObj = $.fn.zTree.init($("#"+self.dataId), setting, data);
                 //展开节点
                 zTreeObj.expandAll(true);
-                console.log(zTreeObj)
             });
         }
     }

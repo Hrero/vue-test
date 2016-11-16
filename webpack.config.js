@@ -1,10 +1,9 @@
 var path = require('path');
 var webpack = require('webpack');
-var port = require("./src/config/index.js");
-var global = require("./src/config/httpConfig.js");
+var global = require("./server/httpConfig.js");
 
 module.exports = {
-  entry: './src/main.js',
+  entry: './index.js',
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: "http://"+global.globalUrl+":"+global.globalPort+"/dist/",
@@ -33,7 +32,7 @@ module.exports = {
         loader:'style!css'
       },
       { test: /\.scss$/, loader: 'style!css!sass?sourceMap', exclude: /node_modules/ },
-      { test:/\.(woff|svg|ttf|eot)$/,loader:'url-loader?limit=10000'},//限制大小小于10k的
+      { test:/\.(woff|svg|ttf|eot|woff2)$/,loader:'url-loader?limit=20000'},//限制大小小于10k的
       { test:/\.(png|jpg|gif)$/,loader:'url-loader?name=image/[hash:8].[name].[ext]' }
     ]
   },
@@ -45,7 +44,16 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
     noInfo: true,
-    proxy: port
+    proxy:  {
+      '/jeecg': {
+        target: 'http://'+global.globalUrl+':'+global.globalPort,
+        pathRewrite: {'^/jeecg' : 'jeecg'}
+      },
+      '/login': {
+        target: 'http://'+global.globalUrl+':3000',
+        pathRewrite: {'^/login' : '/login'}
+      }
+    }
   },
   devtool: '#eval-source-map'
 }

@@ -1,0 +1,40 @@
+#questionsCreate {
+    padding: 10px;
+    h2 {
+        line-height: 50px;
+        border-bottom: 1px solid #999;
+    }
+    .list {
+        padding: 10px 0;
+        border-bottom: 1px solid #999;
+        line-height: 30px;
+        h4 {
+            line-height: 30px;
+        }
+        .option {
+            height: 30px;
+        }
+        .grade {
+            position: relative;
+            .gradeOptions {
+                position: absolute;
+                width: 150px;
+                padding: 10px;
+                left: 0;
+                top: 30px;
+                border: 1px solid #999;
+                p {
+                    padding-left: 20px;
+                }
+            }
+        }
+        .left {
+            width: 200px;
+            float: left;
+        }
+        .right {
+            float: left;
+        }
+    }
+
+}

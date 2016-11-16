@@ -5,8 +5,8 @@
 </template>
 
 <script>
-    import Login from "./components/login.vue"
-    import MainCom from "./components/main.vue"
+    import Login from "./login.vue"
+    import MainComponent from "./main.vue"
     export default {
         name: 'app',
         data () {
@@ -17,7 +17,7 @@
         },
         components: {
             Login,
-            MainCom
+            MainComponent
         },
         methods: {
             incrementTotal (component) {

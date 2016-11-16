@@ -1,0 +1,46 @@
+#main {
+  height: 100%;
+  .icon {
+      width: 1em; height: 1em;
+      vertical-align: -0.15em;
+      fill: currentColor;
+      overflow: hidden;
+      color:#000;
+  }
+  .active {
+    .icon {
+      color: white;
+    }
+  }
+  .navListBox {
+      width: 10%;
+      float: left;
+      .navList {
+          padding: 5px;
+          p {
+              color: #777777;
+          }
+        .active {
+          background: #337ab7;
+          color: white;
+        }
+        .sideBarList {
+          line-height: 50px;
+          text-indent: 10px;
+          background: #ddd;
+        }
+      }
+  }
+  .contentBox {
+      float: left;
+      width: 90%;
+      height: 90%;
+      overflow-y: scroll;
+  }
+  #content {
+      height: 1400px;
+  }
+  .categoriesBox {
+      position: relative;
+  }
+}
