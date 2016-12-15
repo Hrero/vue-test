@@ -3,7 +3,7 @@
 /logs/*
 /src/public/upload/img/images/*
 /server/http/constant.js
-
+/server/mongodb/mysql-config.js
 /.idea
 !/logs/日志.log
 !/src/public/upload/img/images/图片.txt
