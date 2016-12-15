@@ -35,9 +35,6 @@ app.use("/qiniu", qiniu);
 // 富文本编辑器
 app.use("/upload", function (req, res) { ueditor(req, res); });
 
-// 日志
-require('./log/log')();
-
 //mongodb创建
 require('./mongodb/mongodb')(app);
 //mongodb连接
@@ -71,6 +68,9 @@ if(!global.type){
 
 
 app.use(require('connect-history-api-fallback')());
+
+// 日志
+require('./log/log')();
 
 //静态文件服务
 app.use(express.static(path.join(__dirname,'../')));

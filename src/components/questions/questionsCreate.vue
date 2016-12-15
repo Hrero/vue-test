@@ -3,7 +3,7 @@
         <h3>创建试题</h3>
         <div class="list">
             <h4>试题基本信息</h4>
-            <div class="option">
+            <!--<div class="option">
                 <div class="left">
                     <i>*</i>学年
                 </div>
@@ -38,7 +38,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>-->
+
         </div>
     </div>
 </template>

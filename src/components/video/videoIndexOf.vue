@@ -1,6 +1,5 @@
 <template lang="html">
     <div class="">
-        7777777777777
         <ueditor :dataStyle="style" v-on:increment="incrementTotal" :dataBothway="bothway"></ueditor>
         <button type="button" class="btn btn-default" @click="preview()">预览</button>
         <div id="ccc" v-ueditor="ueditor"></div>

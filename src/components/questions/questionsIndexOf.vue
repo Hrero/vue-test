@@ -10,7 +10,7 @@
 </template>
 
 <script>
-    import uploadRadio from '../../public/upload/radio/javascripts/uploadFile';
+    import uploadRadio from '../../public/upload/radio/javascripts/uploadRadio';
     //import axios from "axios"
     export default {
         data () {

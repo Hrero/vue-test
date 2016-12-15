@@ -1,8 +1,8 @@
 <template>
     <div id="main" class="positionCenter">
         <h2>易教空间资源库系统录入平台</h2>
-        <ul class="nav nav-pills" id="nav" role="tablist">
-            <li role="presentation" class="navList"  v-for="(val,key,index) in sideBarData" :data-name="key" @click="showSideBar($event,this)">
+       <!-- <ul class="nav nav-pills" id="nav" role="tablist">
+            <li role="presentation" class="navList"  v-for="(val,key,index) in sideBarData" :data-name="key" @click="showSideBar($event)">
                 <router-link :to="val[0].href">
                     <svg class="icon" aria-hidden="true">
                         <use :xlink:href="val[0].icon"></use>
@@ -10,7 +10,17 @@
                     {{val[0].name}}
                 </router-link>
             </li>
-        </ul>
+        </ul>-->
+        <div class="ui ordered steps">
+            <div class="step navList" v-for="(val,key,index) in sideBarData" :data-name="key" @click="showSideBar($event)">
+                <router-link :to="val[0].href">
+                    <svg class="icon" aria-hidden="true">
+                        <use :xlink:href="val[0].icon"></use>
+                    </svg>
+                    {{val[0].name}}
+                </router-link>
+            </div>
+        </div>
         <ul class="nav nav-pills navListBox nav-stacked" role="tablist">
             <li role="presentation" class="navList"  v-for="(val,key,index) in sideBar[0].children">
                 <p>{{val.sideBarH}}</p>
@@ -46,12 +56,12 @@
             showSideBar (event,checked) {
                 var target = event.path;
                 for(let item of target){
-                    if(item.localName == "li"){
+                    if(item.localName == "div"){
                         target = $(item);
                         break;
                     }
                 }
-                target.addClass("active").siblings("li").removeClass("active");
+                //target.addClass("active").siblings("li").removeClass("active");
                 var sideBar = target.attr("data-name");
                 this.sideBar = this.sideBarData[sideBar];
             },
