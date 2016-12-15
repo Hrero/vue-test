@@ -1,8 +1,7 @@
-
 /node_modules
-/
-dist
-/
-npm-debug.log
-
+/dist
+/logs/*
+/src/public/upload/img/images/*
+/server/http/constant.js
+/server/mongodb/mysql-config.js
 /.idea
