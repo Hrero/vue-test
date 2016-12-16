@@ -22,28 +22,40 @@ let config = {
         loaders: [
             {
                 test: require.resolve('jquery'),
-                loader: 'expose?jQuery!expose?$'
+                loader: 'expose?jQuery!expose?$',
             }, {
                 test: /\.vue$/,
-                loader: 'vue'
+                loader: 'vue',
+                exclude: /node_modules/
             }, {
                 test: /\.js$/,
                 loader: 'babel',
-                exclude: /node_modules/,
-                query: {
-                    presets: ['es2015'],
-                    plugins: ['typecheck', 'syntax-flow', 'transform-flow-strip-types', 'transform-runtime']
-                }
+                exclude: /node_modules/
             }, {
                 test: /\.json$/,
-                loader: 'json'
+                loader: 'json',
+                exclude: /node_modules/
             }, {
                 test: /\.css$/,
-                loader: 'style!css'
-            },
-            {test: /\.scss$/, loader: 'style!css!sass?sourceMap', exclude: /node_modules/},
-            {test: /\.(woff|svg|ttf|eot|woff2)(\?.*)?$/, loader: 'url?limit=10000'},//限制大小小于10k的
-            {test: /\.(png|jpg|gif)$/, loader: 'url?limit=10000?name=image/[hash:8].[name].[ext]'}
+                loader: 'style!css',
+            }, {
+                test: /\.scss$/,
+                loader: 'style!css!sass?sourceMap',
+                exclude: /node_modules/
+            }, {
+                test: /\.(woff|svg|ttf|eot|woff2)(\?.*)?$/,
+                loader: "url",
+                query: {
+                    limit: 10000
+                }
+            }, {
+                test: /\.(png|jpg|gif)$/,
+                loader: "url",
+                query: {
+                    limit: 10000,
+                    name: "image/[hash:8].[name].[ext]"
+                }
+            }
         ]
     },
     plugins: [
