@@ -1,10 +1,10 @@
 const editor = {
     uploadInit: function () {
-        var editor = this;
-        var btnId = editor.customUploadBtnId;
-        var containerId = editor.customUploadContainerId;
+        let editor = this;
+        let btnId = editor.customUploadBtnId;
+        let containerId = editor.customUploadContainerId;
         //实例化一个上传对象
-        var uploader = new plupload.Uploader({
+        let uploader = new plupload.Uploader({
             browse_button: btnId,
             url: '/upload',
             flash_swf_url: '../Moxie.swf',
@@ -21,7 +21,7 @@ const editor = {
             }
         });
         //存储所有图片的url地址
-        var urls = [];
+        let urls = [];
         //初始化
         uploader.init();
         //绑定文件添加到队列的事件
@@ -36,7 +36,7 @@ const editor = {
         //单个文件上传之后
         uploader.bind('FileUploaded', function (uploader, file, responseObject) {
             //注意，要从服务器返回图片的url地址，否则上传的图片无法显示在编辑器中
-            var url = responseObject.response;
+            let url = responseObject.response;
             //先将url地址存储来，待所有图片都上传完了，再统一处理
             urls.push(url);
             printLog('一个图片上传完成，返回的url是' + url);

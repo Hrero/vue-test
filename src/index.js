@@ -25,7 +25,6 @@ import "./public/semantic/semantic.min"
 import "./order"
 
 
-
 new Vue({
     el: '#app',
     template: '<App/>',

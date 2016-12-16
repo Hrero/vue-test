@@ -1,8 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const global = require("../server/http/constant");
-
-const projectRootPath = path.resolve(__dirname,'../');
+const projectRootPath = path.resolve(__dirname, '../');
 
 let config = {
     entry: [
@@ -24,25 +23,21 @@ let config = {
             {
                 test: require.resolve('jquery'),
                 loader: 'expose?jQuery!expose?$'
-            },
-            {
+            }, {
                 test: /\.vue$/,
                 loader: 'vue'
-            },
-            {
+            }, {
                 test: /\.js$/,
                 loader: 'babel',
                 exclude: /node_modules/,
-                query  : {
+                query: {
                     presets: ['es2015'],
                     plugins: ['typecheck', 'syntax-flow', 'transform-flow-strip-types', 'transform-runtime']
                 }
-            },
-            {
+            }, {
                 test: /\.json$/,
                 loader: 'json'
-            },
-            {
+            }, {
                 test: /\.css$/,
                 loader: 'style!css'
             },
@@ -51,10 +46,10 @@ let config = {
             {test: /\.(png|jpg|gif)$/, loader: 'url?limit=10000?name=image/[hash:8].[name].[ext]'}
         ]
     },
-    plugins:[
+    plugins: [
         new webpack.DefinePlugin({
-            "process.env":{
-                NODE_ENV:JSON.stringify(process.env.NODE_ENV)
+            "process.env": {
+                NODE_ENV: JSON.stringify(process.env.NODE_ENV)
             }
         })
     ]
@@ -63,8 +58,8 @@ let config = {
 //添加hotreplace支持
 if (process.env.NODE_ENV !== 'production' && !global.type) {
     config.devtool = 'eval';
-    config.entry.unshift ('webpack-hot-middleware/client');
+    config.entry.unshift('webpack-hot-middleware/client');
     config.plugins.unshift(new webpack.HotModuleReplacementPlugin());
 }
 
-module.exports=config;
+module.exports = config;

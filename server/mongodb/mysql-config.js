@@ -1,4 +1,4 @@
-var mysqlConfig ={
+let mysqlConfig = {
     //166
     // host: 'localhost',
     // user: 'root',
@@ -18,8 +18,8 @@ var mysqlConfig ={
     user: 'root',
     password: '123456',
     database: 'e-eduspace-service-web',
-    port:'3306'
+    port: '3306'
 };
 module.exports = {
-    config:'mysql://'+mysqlConfig.user+':'+mysqlConfig.password+'@'+mysqlConfig.host+':'+mysqlConfig.port+'/'+mysqlConfig.database
+    config: 'mysql://' + mysqlConfig.user + ':' + mysqlConfig.password + '@' + mysqlConfig.host + ':' + mysqlConfig.port + '/' + mysqlConfig.database
 };

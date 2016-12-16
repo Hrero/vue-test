@@ -7,7 +7,6 @@ const http_url = require('../../../server/http/http_client');
 const questionsCreate = require("../../utils/questionsCreate");
 
 
-
 //获取学年
 router.get('/getAllGrade', function (req, res) {
     let options = http_url.getUrl(global.globalUrl, global.globalPort, questionsCreate.getAllGrade, "GET");
@@ -23,9 +22,6 @@ router.get('/getGradeCodeById', function (req, res) {
         res.send(data);
     });
 });
-
-
-
 
 
 module.exports = router;

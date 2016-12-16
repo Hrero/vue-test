@@ -4,5 +4,5 @@
 /src/public/upload/img/images/*
 /.idea
 /npm-debug.log
-!/logs/日志.log/图片.txt
-!/src/public/upload/img/images
+!/logs/日志.log
+!/src/public/upload/img/images/图片.txt

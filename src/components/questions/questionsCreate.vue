@@ -3,33 +3,36 @@
         <h3>创建试题</h3>
         <div class="list">
             <h4>试题基本信息</h4>
-            <!--<div class="option">
+            <div class="option">
                 <div class="left">
                     <i>*</i>学年
                 </div>
                 <div class="right grade">
                     <div @click="showBox()">
                         <span>{{params.gradeName || showData.gradeName}}</span>
-                        <input type="hidden" v-model="params.gradeCode" />
+                        <input type="hidden" v-model="params.gradeCode"/>
                     </div>
-                    <input type="hidden" />
+                    <input type="hidden"/>
                     <div class="gradeOptions" v-if="isShowHide.gradeOptions">
                         <div class="block">
                             <div>小学</div>
                             <p v-for="item in ajax.grade1">
-                                <input :id="'gradeCode'+item.gradeCode" type="checkbox" :value="item.gradeCode" v-model="showData.gradeArr" /><label :for="'gradeCode'+item.gradeCode">{{item.gradeName}}</label>
+                                <input :id="'gradeCode'+item.gradeCode" type="checkbox" :value="item.gradeCode"
+                                       v-model="showData.gradeArr"/><label :for="'gradeCode'+item.gradeCode">{{item.gradeName}}</label>
                             </p>
                         </div>
                         <div class="block">
                             <div>初中</div>
                             <p v-for="item in ajax.grade2">
-                                <input :id="'gradeCode'+item.gradeCode" type="checkbox" :value="item.gradeCode" v-model="showData.gradeArr" /><label :for="'gradeCode'+item.gradeCode">{{item.gradeName}}</label>
+                                <input :id="'gradeCode'+item.gradeCode" type="checkbox" :value="item.gradeCode"
+                                       v-model="showData.gradeArr"/><label :for="'gradeCode'+item.gradeCode">{{item.gradeName}}</label>
                             </p>
                         </div>
                         <div class="block">
                             <div>高中</div>
                             <p v-for="item in ajax.grade3">
-                                <input :id="'gradeCode'+item.gradeCode" type="checkbox" :value="item.gradeCode" v-model="showData.gradeArr" /><label :for="'gradeCode'+item.gradeCode">{{item.gradeName}}</label>
+                                <input :id="'gradeCode'+item.gradeCode" type="checkbox" :value="item.gradeCode"
+                                       v-model="showData.gradeArr"/><label :for="'gradeCode'+item.gradeCode">{{item.gradeName}}</label>
                             </p>
                         </div>
                         <div class="block">
@@ -38,8 +41,7 @@
                         </div>
                     </div>
                 </div>
-            </div>-->
-
+            </div>
         </div>
     </div>
 </template>
@@ -72,9 +74,8 @@
         },
         created () {
             //学年分类
-            /*axios.get("/questions/questionsCreate/getAllGrade").then((data) => {
-                var gradeAll = data.data;
-                for (let item of gradeAll) {
+            $.get("/questions/questionsCreate/getAllGrade").then((data) => {
+                for (let item of data) {
                     this.ajax.gradeAll.push(item);
                     switch (item.stageCode) {
                         case "1" :
@@ -88,14 +89,13 @@
                             break;
                     }
                 }
-            })*/
+            })
         },
         methods: {
             showBox () {
                 this.isShowHide.gradeOptions = true;
             },
             hideBox () {
-
                 this.isShowHide.gradeOptions = false;
             },
             cancel () {
@@ -109,27 +109,27 @@
 
         },
         watch: {
-           "showData.gradeArr" (val, oldVal) {
+            "showData.gradeArr" (val, oldVal) {
                 let gradeAll = this.ajax.gradeAll,
                     gradeName = [],
                     type = "",
                     typeNew = "";
-                for(let i=0; i<val.length; i++){
+                for (let i = 0; i < val.length; i++) {
                     //判断是否跨学段选择
-                    if(type){
-                        typeNew = val[i].substring(0,1);
-                        if(typeNew != type){
+                    if (type) {
+                        typeNew = val[i].substring(0, 1);
+                        if (typeNew != type) {
                             this.showData.gradeArr = [];
 
                             alert("请不要跨学段选择");
-                            return ;
+                            return;
                         }
                     } else {
-                        type = val[i].substring(0,1);
+                        type = val[i].substring(0, 1);
                     }
                     //根据gradeCode获取gradeName;
-                    for(let k=0; k<gradeAll.length; k++){
-                        if(gradeAll[k].gradeCode == val[i]){
+                    for (let k = 0; k < gradeAll.length; k++) {
+                        if (gradeAll[k].gradeCode == val[i]) {
                             gradeName.push(gradeAll[k].gradeName);
                             break;
                         }

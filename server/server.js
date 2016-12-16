@@ -6,12 +6,10 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 
 
-
 const qiniu = require("../server/qiniu/qiniu");   //  七牛请求配置文件
 const global = require('./http/constant');
 const constent = require("./http/constant");
 const ueditor = require('../server/wangEditor/index');
-const appConfig = require('./appConfig');
 const constant = require("../server/http/constant");
 const app = express();
 
@@ -33,7 +31,12 @@ app.use(session({
 app.use("/qiniu", qiniu);
 
 // 富文本编辑器
-app.use("/upload", function (req, res) { ueditor(req, res); });
+app.use("/upload", function (req, res) {
+    ueditor(req, res);
+});
+
+// 日志
+require('./log/log')();
 
 //mongodb创建
 require('./mongodb/mongodb')(app);
@@ -47,16 +50,16 @@ require("./mongodb/login")(app);
 require("../src/routes/index")(app);
 
 //webpack中间件配置，包括hotReplace
-if(!global.type){
+if (!global.type) {
     const wpConfig = require('./webpack.dev.js');
     const compiler = webpack(wpConfig);
 
     const webpackMiddleware = require("webpack-dev-middleware");
-    const webpackHotMiddleware =require('webpack-hot-middleware');
+    const webpackHotMiddleware = require('webpack-hot-middleware');
 
-    app.use(webpackMiddleware(compiler,{
-        publicPath:wpConfig.output.publicPath,
-        noInfo:true,
+    app.use(webpackMiddleware(compiler, {
+        publicPath: wpConfig.output.publicPath,
+        noInfo: true,
         stats: {
             colors: true,
             chunks: false
@@ -69,20 +72,17 @@ if(!global.type){
 
 app.use(require('connect-history-api-fallback')());
 
-// 日志
-require('./log/log')();
-
 //静态文件服务
-app.use(express.static(path.join(__dirname,'../')));
+app.use(express.static(path.join(__dirname, '../')));
 
-if (constant.localhostPort){
-    app.listen(constant.localhostPort,(err) =>{
-        if (err){
+if (constant.localhostPort) {
+    app.listen(constant.localhostPort, (err) => {
+        if (err) {
             console.log(err)
-        }else{
-            console.info('server is running at %d',constant.localhostPort)
+        } else {
+            console.info('server is running at %d', constant.localhostPort)
         }
     })
-}else{
+} else {
     console.error('No port is set')
 }

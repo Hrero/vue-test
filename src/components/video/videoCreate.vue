@@ -1,43 +1,37 @@
 <template>
     <div id="product">
-      <div id="videoUploader" style="margin-top: 10px;background: blue;height:50px;">
-        <div id="videoPickfiles">
-          <img src="../../public/upload/video/images/addvideo.png" />
-        </div>
-      </div>
-      <p @click="deleteVideo()">删除视频</p>
+        <uploadVideo></uploadVideo>
+        <p @click="deleteVideo()">删除视频</p>
     </div>
 </template>
 
 <script>
-  import uploadVideo from '../../public/upload/video/javascripts/uploadVideo';
-  //import axios from "axios"
+    import uploadVideo from '../../public/upload/video/uploadVideo';
 
-export default {
-  data () {
-    return {
-
+    export default {
+        data () {
+            return {}
+        },
+        computed: {},
+        mounted () {
+            //uploadVideo();
+        },
+        methods: {
+            deleteVideo () {
+                $.get("/qiniu/deleteVideoId?file=Carly Rae Jepsen - 超级面对面 第90期 Carly Rae Jepsen：我可不只是“蹲妹”.mp4").then((data) => {
+                    console.log(data);
+                })
+            }
+        },
+        components: {
+            uploadVideo
+        }
     }
-  },
-  computed: {
-  },
-  mounted () {
-    uploadVideo();
-  },
-  methods: {
-    deleteVideo () {
-      /*axios.get("/qiniu/deleteVideoId?file=QQ截图20161208152825.png").then((data) => {
-        console.log(data.data);
-      })*/
-    }
-  },
-  components: {}
-}
 </script>
 
 <style>
-  #product{
-    width: 100%;
-    height: 100%;
-  }
+    #product {
+        width: 100%;
+        height: 100%;
+    }
 </style>

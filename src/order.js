@@ -5,7 +5,7 @@ import Vue from 'vue'
 Vue.directive('ueditor', {
     update: function (el, binding) {
         el.innerHTML = binding.value;
-        MathJax.Hub.Queue(["Typeset", MathJax.Hub,el]);
+        MathJax.Hub.Queue(["Typeset", MathJax.Hub, el]);
     }
 });
 

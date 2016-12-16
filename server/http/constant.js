@@ -1,12 +1,12 @@
-module.exports={
+module.exports = {
 
     //type:"线上",
 
-     localhostPort:"3500",
-     difficulty:"100.0",
+    localhostPort: "3500",
+    difficulty: "100.0",
 
-    globalUrl:'211.157.179.217',            //测试
-    globalPort:"8080",
+    globalUrl: '211.157.179.217',            //测试
+    globalPort: "8080",
 
     // globalUrl:'192.168.1.74',            //景玉飞
     // globalPort:"8080",
@@ -29,10 +29,10 @@ module.exports={
     // globalUrl:'123.56.141.166',          //线上
     // globalPort:"8080",
 
-    logDBUrl:"mongodb://localhost/logs",
-    sessionDBUrl:"mongodb://localhost/session",
+    logDBUrl: "mongodb://localhost/logs",
+    sessionDBUrl: "mongodb://localhost/session",
     //product mode------------------------------------------------------
     // globalUrl:'product.service.iwrong.cn',
     // globalPort:"80",
-     time_out:36000
+    time_out: 36000
 };

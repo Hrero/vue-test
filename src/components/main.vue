@@ -1,18 +1,9 @@
 <template>
     <div id="main" class="positionCenter">
         <h2>易教空间资源库系统录入平台</h2>
-       <!-- <ul class="nav nav-pills" id="nav" role="tablist">
-            <li role="presentation" class="navList"  v-for="(val,key,index) in sideBarData" :data-name="key" @click="showSideBar($event)">
-                <router-link :to="val[0].href">
-                    <svg class="icon" aria-hidden="true">
-                        <use :xlink:href="val[0].icon"></use>
-                    </svg>
-                    {{val[0].name}}
-                </router-link>
-            </li>
-        </ul>-->
         <div class="ui ordered steps">
-            <div class="step navList" v-for="(val,key,index) in sideBarData" :data-name="key" @click="showSideBar($event)">
+            <div class="step navList" v-for="(val,key,index) in sideBarData" :data-name="key"
+                 @click="showSideBar($event)">
                 <router-link :to="val[0].href">
                     <svg class="icon" aria-hidden="true">
                         <use :xlink:href="val[0].icon"></use>
@@ -22,7 +13,7 @@
             </div>
         </div>
         <ul class="nav nav-pills navListBox nav-stacked" role="tablist">
-            <li role="presentation" class="navList"  v-for="(val,key,index) in sideBar[0].children">
+            <li role="presentation" class="navList" v-for="(val,key,index) in sideBar[0].children">
                 <p>{{val.sideBarH}}</p>
                 <div class="sideBarList" v-for="item in val.list" @click="sideBarList($event)">
                     <router-link :to="item.href">
@@ -53,10 +44,10 @@
             }
         },
         methods: {
-            showSideBar (event,checked) {
+            showSideBar (event, checked) {
                 var target = event.path;
-                for(let item of target){
-                    if(item.localName == "div"){
+                for (let item of target) {
+                    if (item.localName == "div") {
                         target = $(item);
                         break;
                     }
@@ -72,7 +63,6 @@
         },
         created () {
             this.sideBar = this.sideBarData.product;
-
         }
     }
 </script>

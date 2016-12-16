@@ -1,5 +1,5 @@
-exports.getUrl=function get_http_GetUrl(host,port,path,type){
-    var options = {
+exports.getUrl = function get_http_GetUrl(host, port, path, type) {
+    let options = {
         host: host,
         port: port,
         path: path,

@@ -19,8 +19,9 @@
                 </div>
                 <div class="form-group col-md-4">
                     <label>课程类型</label>
-                    <select  class="form-control" v-model="formStacked.rtCategoryCode">
-                        <option v-for="item in ajax.retrivalData" :value="item.categoryCode">{{item.categoryName}}</option>
+                    <select class="form-control" v-model="formStacked.rtCategoryCode">
+                        <option v-for="item in ajax.retrivalData" :value="item.categoryCode">{{item.categoryName}}
+                        </option>
                     </select>
                 </div>
             </div>
@@ -39,7 +40,8 @@
                 </div>
                 <div id="CourseBookType" class="form-group col-md-6">
                     <label>教材版本</label>
-                    <select class="form-control select_bt" v-model="formContent.bookType" @change="bookTypeSelectChange(formContent.bookType)">
+                    <select class="form-control select_bt" v-model="formContent.bookType"
+                            @change="bookTypeSelectChange(formContent.bookType)">
                         <option v-for="item in ajax.bookTypeData" :value="item.code">{{item.name}}</option>
                     </select>
                     <input type="radio" name="bookType" value="xgr" @click="bookTypeChange('xgr')">易教版
@@ -49,7 +51,8 @@
             <div class="row">
                 <div class="form-group col-md-4">
                     <label>建议开课时间</label>
-                    <div class="input-append date" id="datetimepicker" data-date="12-02-2012" data-date-format="dd-mm-yyyy">
+                    <div class="input-append date" id="datetimepicker" data-date="12-02-2012"
+                         data-date-format="dd-mm-yyyy">
                         <input class="span2" size="16" type="text" value="12-02-2012">
                         <span class="add-on"><i class="icon-th"></i></span>
                     </div>
@@ -84,7 +87,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row" >
+            <div class="row">
                 <div class="form-group col-md-6" style="margin-right: 10px">
                     <label>目标分数</label>
                     <input type="text" name="goalScore" class="form-control" placeholder="目标分数">
@@ -133,7 +136,6 @@
     import "../../../css/independent/independentCreate.scss"
     import categories from "../../../public/ztree/categories.vue"
     import base from "../../../utils/base"
-    import $ from "jquery"
 
     export default {
         data () {
@@ -168,7 +170,7 @@
                 value2: "",
                 masger: "组件independentCreate",
                 state3: "",
-                dataType: [{"name":"月","value":"月"},{"name":"周","value":"周"},{"name":"日","value":"日"}],
+                dataType: [{"name": "月", "value": "月"}, {"name": "周", "value": "周"}, {"name": "日", "value": "日"}],
                 pickerOptions1: {},
                 formInline: "",
                 categoriesName: "",
@@ -177,7 +179,7 @@
         },
         methods: {
             //接收上课形式模块传回来的name、code
-            incrementTotal (name,code) {
+            incrementTotal (name, code) {
                 this.formContent.categoriesName = name;
                 this.formStacked.categoriesCode = code;
             },
@@ -192,13 +194,13 @@
             },
             bookTypeSelectChange (val) {
                 this.formStacked.bookType = val;
-                $("#independentCreate").find("[name=bookType]").prop("checked",false);
+                $("#independentCreate").find("[name=bookType]").prop("checked", false);
             }
         },
         created () {
             //获取“课程类型”数据
-            $.get("/course/independent/retrival",function(data){
-              this.ajax.retrivalData = JSON.parse(data).msgObject;
+            $.get("/course/independent/retrival", function (data) {
+                this.ajax.retrivalData = JSON.parse(data).msgObject;
             });
             //获取“学年”数据
             $.get("/course/independent/getAllGrade").then((data) => {

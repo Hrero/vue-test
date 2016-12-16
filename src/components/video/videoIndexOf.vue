@@ -1,5 +1,7 @@
 <template lang="html">
     <div class="">
+        <uploadFile></uploadFile>
+        <p @click="deleteFile">点击删除文件</p>
         <ueditor :dataStyle="style" v-on:increment="incrementTotal" :dataBothway="bothway"></ueditor>
         <button type="button" class="btn btn-default" @click="preview()">预览</button>
         <div id="ccc" v-ueditor="ueditor"></div>
@@ -7,10 +9,9 @@
 </template>
 
 <script>
-    //import axios from 'axios';
-    import uploadImage from '../../public/upload/img/javascripts/uploadImage';
-    import ueditor from "../common/wangEditor.vue"
-    import $ from "jquery";
+    import uploadImage from '../../public/upload/img/javascripts/uploadImage'
+    import uploadFile from "../../public/upload/file/uploadFile.vue"
+    import ueditor from "../../public/wangEditor.vue"
 
 
     export default {
@@ -18,7 +19,7 @@
             return {
                 ueditor: "",
                 style: {
-                    height:"300px"
+                    height: "300px"
                 },
                 bothway: true
             }
@@ -35,15 +36,21 @@
         },
         methods: {
             preview () {
-               let ueditorHtml = $("#div1").html();
-               this.ueditor = ueditorHtml;
+                let ueditorHtml = $("#div1").html();
+                this.ueditor = ueditorHtml;
             },
             incrementTotal (data) {
                 this.ueditor = data;
+            },
+            deleteFile () {
+                $.get("/qiniu/deleteFileId?file=shell.docx").then((data) => {
+                    console.log(data);
+                })
             }
         },
         components: {
-            ueditor
+            ueditor,
+            uploadFile
         }
     }
 </script>

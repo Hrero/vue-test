@@ -35,22 +35,11 @@
                 </div>
             </div>
         </form>
-        <div class="ui indicating progress" :data-value="zhi" id="example5">
-            <div class="bar">
-                <div class="progress"></div>
-            </div>
-            <div class="label">Adding Photos</div>
-        </div>
-        <button @click="ccc">开始</button>
     </div>
 </template>
 
 <script>
-    //var async = require("async");
     import "../css/login.scss"
-    //import axios from "axios"
-    import $ from "jquery"
-
     export default {
         data () {
             return {
@@ -66,46 +55,34 @@
             goLogin () {
                 this.$router.push("/");
                 /*console.log("goLogin");
-                $('.ui.form').onSuccess(() => {
-                    console.log("登录");
-                })*/
-               /* var params = {
-                    "username": this.userName,
-                    "password": this.userPassword
-                };
-              this.$router.push("/home");*/
-              //axios.get("/deleteRadioId?file=radio.mp3")
+                 $('.ui.form').onSuccess(() => {
+                 console.log("登录");
+                 })*/
+                /* var params = {
+                 "username": this.userName,
+                 "password": this.userPassword
+                 };
+                 this.$router.push("/home");*/
+                //axios.get("/deleteRadioId?file=radio.mp3")
                 /*.then((result) => {
-                    if (result.data) {
-                        if (this.checked) {
-                            localStorage.setItem("v4UserName", this.userName);
-                            localStorage.setItem("v4UserPassword", this.userPassword);
-                        } else {
-                            localStorage.removeItem("v4UserName");
-                            localStorage.removeItem("v4UserPassword");
-                        }
-                        this.$router.push("/home")
-                    } else {
-                        if (this.userName == "" || this.userPassword == "") {
-                            this.message = "“用户名”或“密码”不能为空";
-                        } else {
-                            this.message = "“用户名”或“密码”密码错误";
-                        }
-                        this.error = true;
-                    }
-                })*/
-            },
-            xxx () {
-                let self = this;
-                self.zhi += 1;
-                $('#example5').progress("increment");
-            },
-            ccc () {
-                let self = this;
-                setInterval(function(){
-                    self.zhi += 1;
-                    $('#example5').progress("set progress", self.zhi+"%");
-                },50);
+                 if (result.data) {
+                 if (this.checked) {
+                 localStorage.setItem("v4UserName", this.userName);
+                 localStorage.setItem("v4UserPassword", this.userPassword);
+                 } else {
+                 localStorage.removeItem("v4UserName");
+                 localStorage.removeItem("v4UserPassword");
+                 }
+                 this.$router.push("/home")
+                 } else {
+                 if (this.userName == "" || this.userPassword == "") {
+                 this.message = "“用户名”或“密码”不能为空";
+                 } else {
+                 this.message = "“用户名”或“密码”密码错误";
+                 }
+                 this.error = true;
+                 }
+                 })*/
             }
         },
         created () {
@@ -116,17 +93,7 @@
             }
         },
         mounted () {
-            $('#example5').progress({
-                total: 100,
-                text: {
-                    success : '上传完成'
-                }
-            });
-        },
-       /* watch: {
-            "zhi" () {
-                $('#example5').progress();
-            }
-        }*/
+
+        }
     }
 </script>

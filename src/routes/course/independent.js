@@ -39,12 +39,11 @@ router.get('/getSubjectByGradeCode', function (req, res) {
 //根据“学年”、“学科”获取“教材”
 router.get('/getBookType', function (req, res) {
     let params = req.query;
-    let options = http_url.getUrl(global.globalUrl, global.globalPort, base.getBookType + params.subjectCode + "/"  + params.gradeCode, "GET");
+    let options = http_url.getUrl(global.globalUrl, global.globalPort, base.getBookType + params.subjectCode + "/" + params.gradeCode, "GET");
     commonService.request(options, function (data) {
         res.send(data);
     });
 });
-
 
 
 module.exports = router;
