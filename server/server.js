@@ -5,7 +5,6 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 
-
 const qiniu = require("../server/qiniu/qiniu");   //  七牛请求配置文件
 const global = require('./http/constant');
 const constent = require("./http/constant");
@@ -13,7 +12,7 @@ const ueditor = require('../server/wangEditor/index');
 const constant = require("../server/http/constant");
 const app = express();
 
-
+//req.body
 app.use(bodyParser());
 
 //req.session
@@ -38,22 +37,20 @@ app.use("/upload", function (req, res) {
 // 日志
 require('./log/log')();
 
-//mongodb创建
+// mongodb创建
 require('./mongodb/mongodb')(app);
-//mongodb连接
+// mongodb连接
 require("./mongodb/logModel");
-//mongodb登录
+// mongodb登录
 require("./mongodb/login")(app);
 
-//路由
-
+// 路由
 require("../src/routes/index")(app);
 
 //webpack中间件配置，包括hotReplace
 if (!global.type) {
     const wpConfig = require('./webpack.dev.js');
     const compiler = webpack(wpConfig);
-
     const webpackMiddleware = require("webpack-dev-middleware");
     const webpackHotMiddleware = require('webpack-hot-middleware');
 
@@ -65,11 +62,10 @@ if (!global.type) {
             chunks: false
         }
     }));
-
     app.use(webpackHotMiddleware(compiler));
 }
 
-
+//vue 路由支持
 app.use(require('connect-history-api-fallback')());
 
 //静态文件服务

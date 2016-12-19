@@ -22,6 +22,21 @@ router.get('/getGradeCodeById', function (req, res) {
         res.send(data);
     });
 });
+//获取 学科
+router.get('/getSubjectAll', function (req, res) {
+    let options = http_url.getUrl(global.globalUrl, global.globalPort, questionsCreate.getSubjectAll, "GET");
+    commonService.request(options, function (data) {
+        res.send(data);
+    });
+});
+//获取 试题类型
+router.post("/getQuestionId", (req, res) => {
+    let params = req.body;
+    let options = http_url.getUrl(global.globalUrl, global.globalPort, questionsCreate.getQuestionId, "POST");
+    commonService.request(options, function (data) {
+        res.send(data);
+    },params);
+});
 
 
 module.exports = router;

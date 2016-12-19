@@ -1,6 +1,6 @@
 <template lang="html">
     <div>
-        <div id="div1" :style="dataStyle"></div>
+        <div :id="dataId" :style="dataStyle"></div>
     </div>
 
 </template>
@@ -9,6 +9,10 @@
     import uploadImage from './upload/img/javascripts/uploadImage';
     export default{
         props: {
+            dataId: {
+                type: String,
+                twoWay: false
+            },
             dataStyle: {
                 type: Object,
                 twoWay: true
@@ -16,6 +20,22 @@
             dataBothway: {
                 type: Boolean,
                 twoWay: true
+            },
+            dataAdd: {
+                type: String,
+                twoWay: true
+            },
+            dataDelete: {
+                type: String,
+                twoWay: true
+            },
+            AddMethods: {
+                type: String,
+                twoWay: false
+            },
+            DeleteMethods: {
+                type: String,
+                twoWay: false
             }
         },
         data () {
@@ -24,7 +44,8 @@
         mounted () {
             // 创建编辑器
             let self = this;
-            let editor = new wangEditor('div1');
+            let div = $("#" + this.dataId);
+            let editor = new wangEditor(this.dataId);
             editor.config.customUpload = true;                               // 配置自定义上传
             editor.config.customUploadInit = uploadImage.uploadInit;                      // 配置上传事件
             editor.config.menus = $.map(wangEditor.config.menus, function (item, key) {
@@ -40,7 +61,27 @@
                     self.$emit("increment", editor.$txt.html())
                 }
             }
+            let menu = $(".wangEditor-menu-container");
+            if(self.dataAdd){
+                menu.append('<div class="menu-group clearfix"><div class="menu-item clearfix" style="width: 100px;"><a href="#" tabindex="-1"><button class="add">'+self.dataAdd+'</button></a></div></div>');
+                menu.find('.add').on("click", () => {
+                    self.add3();
+                })
+            }
+            if(self.dataDelete){
+                menu.append('<div class="menu-group clearfix"><div class="menu-item clearfix" style="width: 100px;"><a href="#" tabindex="-1"><button class="delete">'+self.dataDelete+'</button></div></div>');
+                menu.find('.delete').on("click", () => {
+                    self.delete3();
+                })
+            }
         },
-        methods: {}
+        methods: {
+            add3 () {
+                this.$emit("Data","add", this.AddMethods);
+            },
+            delete3 () {
+                this.$emit("Data","delete", this.DeleteMethods);
+            }
+        }
     }
 </script>

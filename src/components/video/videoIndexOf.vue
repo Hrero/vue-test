@@ -2,7 +2,7 @@
     <div class="">
         <uploadFile></uploadFile>
         <p @click="deleteFile">点击删除文件</p>
-        <ueditor :dataStyle="style" v-on:increment="incrementTotal" :dataBothway="bothway"></ueditor>
+        <ueditor dataId="div1" :dataStyle="style" v-on:increment="incrementTotal" :dataBothway="bothway"></ueditor>
         <button type="button" class="btn btn-default" @click="preview()">预览</button>
         <div id="ccc" v-ueditor="ueditor"></div>
     </div>
