@@ -37,6 +37,13 @@ router.post("/getQuestionId", (req, res) => {
         res.send(data);
     },params);
 });
+//获取教材
+router.get('/getAllBookType', function (req, res) {
+    let options = http_url.getUrl(global.globalUrl, global.globalPort, questionsCreate.getAllBookType, "GET");
+    commonService.request(options, function (data) {
+        res.send(data);
+    });
+});
 
 
 module.exports = router;

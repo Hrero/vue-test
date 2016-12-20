@@ -65,8 +65,10 @@
                     <i>*</i>分值：
                 </div>
                 <div class="right">
-                    <input v-model="params.part" type="text" style="width: 100px;" />
-                    <i>*</i>难度：<div class="ui massive star rating" :data-rating="params.grade" data-max-rating="5" @click="grade"></div>
+                    <input v-model="params.part" type="text" style="width: 100px;"/>
+                    <i>*</i>难度：
+                    <div class="ui massive star rating" :data-rating="params.grade" data-max-rating="5"
+                         @click="grade"></div>
                 </div>
             </div>
             <div class="option">
@@ -74,7 +76,9 @@
                     <i>*</i>题干：
                 </div>
                 <div class="right">
-                    <ueditor dataId="div1" :dataBothway="true"  v-on:increment="incrementAdd" :dataStyle="style" dataAdd="添加填空" dataDelete="删除填空" :AddMethods="'_____'+index[index.length - 1]+'_____'" :DeleteMethods="'_____'+deleteIndex+'_____'" v-on:Data="addValue"></ueditor>
+                    <ueditor dataId="div1" :dataBothway="true" v-on:increment="incrementAdd" :dataStyle="style"
+                             dataAdd="添加填空" dataDelete="删除填空" :AddMethods="'_____'+index[index.length - 1]+'_____'"
+                             :DeleteMethods="'_____'+deleteIndex+'_____'" v-on:Data="addValue"></ueditor>
                 </div>
             </div>
             <div class="option">
@@ -82,8 +86,11 @@
                     <i>*</i>选项：{{showData.option}}
                 </div>
                 <div class="right">
-                    <button class="ui button" v-for="item in showData.option" @click="btnToggle($event, 'option')">{{item.number}}</button>
-                    <ueditor dataId="div2" :dataBothway="true"  v-on:increment="incrementOption" :dataStyle="style" ></ueditor>
+                    <button class="ui button" v-for="item in showData.option" @click="btnToggle($event, 'option')">
+                        {{item.number}}
+                    </button>
+                    <ueditor dataId="div2" :dataBothway="true" v-on:increment="incrementOption"
+                             :dataStyle="style"></ueditor>
                 </div>
             </div>
             <div class="option">
@@ -91,8 +98,11 @@
                     <i>*</i>解析：{{showData.analysis}}
                 </div>
                 <div class="right">
-                    <button class="ui button" v-for="item in showData.analysis" @click="btnToggle($event, 'analysis')">{{item.number}} </button>
-                    <ueditor dataId="div3" :dataBothway="true" v-on:increment="incrementAnalysis"  :dataStyle="style" ></ueditor>
+                    <button class="ui button" v-for="item in showData.analysis" @click="btnToggle($event, 'analysis')">
+                        {{item.number}}
+                    </button>
+                    <ueditor dataId="div3" :dataBothway="true" v-on:increment="incrementAnalysis"
+                             :dataStyle="style"></ueditor>
                 </div>
             </div>
         </div>
@@ -103,6 +113,7 @@
     import base from "../../utils/base"
     import "../../css/questions/questionsCreate.scss"
     import ueditor from "../../public/wangEditor.vue"
+    import global from "../../global"
     export default {
         data () {
             return {
@@ -113,7 +124,8 @@
                     qusetionType: "",
                     qusetionZZ: "主观题",
                     part: "",
-                    grade: "1"
+                    grade: "1",
+                    title: ""
                 },
                 ajax: {
                     gradeAll: [],
@@ -121,7 +133,7 @@
                     grade2: [],
                     grade3: [],
                     subjectAll: [],
-                    qusetionZZ: ["主观题","客观题","复合题"],
+                    qusetionZZ: ["主观题", "客观题", "复合题"],
                     qusetionAll: []
                 },
                 showData: {
@@ -145,28 +157,22 @@
         },
         created () {
             //学年分类
-            $.get("/questions/questionsCreate/getAllGrade").then((data) => {
-                data = JSON.parse(data);
-                for (let item of data) {
-                    this.ajax.gradeAll.push(item);
-                    switch (item.stageCode) {
-                        case "1" :
-                            this.ajax.grade1.push(item);
-                            break;
-                        case "2" :
-                            this.ajax.grade2.push(item);
-                            break;
-                        case "3" :
-                            this.ajax.grade3.push(item);
-                            break;
-                    }
+            for (let item of global.gradeAll) {
+                this.ajax.gradeAll.push(item);
+                switch (item.stageCode) {
+                    case "1" :
+                        this.ajax.grade1.push(item);
+                        break;
+                    case "2" :
+                        this.ajax.grade2.push(item);
+                        break;
+                    case "3" :
+                        this.ajax.grade3.push(item);
+                        break;
                 }
-            });
+            }
             // 学科
-            $.get("/questions/questionsCreate/getSubjectAll").then((data) => {
-                data = JSON.parse(data);
-                this.ajax.subjectAll = data;
-            });
+            this.ajax.subjectAll = global.subjectAll;
         },
         methods: {
             showBox () {
@@ -183,14 +189,14 @@
             },
             grade () {
                 let self = this;
-                setTimeout(function(){
+                setTimeout(function () {
                     self.params.grade = $('.ui.rating').rating("get rating");
-                },0);
+                }, 0);
             },
             addValue (type, value) {
                 let div1 = $("#div1");
                 //添加内容
-                if(type == "add"){
+                if (type == "add") {
                     let lastValue = this.index[this.index.length - 1];
                     this.index.push(lastValue + 1);
                     div1.children().eq(-1).append(value);
@@ -206,17 +212,17 @@
                     //删除内容
                     let html = div1.html(),
                         index = parseInt(value.replace(/_____/g, ""));
-                    if(html.indexOf(value) != -1){
+                    if (html.indexOf(value) != -1) {
                         this.index.splice(index, 1);
-                        for(let i=index; i<this.index.length; i++){
-                            this.index[i] --;
+                        for (let i = index; i < this.index.length; i++) {
+                            this.index[i]--;
                         }
                     }
                     html = html.replace(value, "");
-                    html = html.replace(/_____\d+_____/g, function(i,c){
+                    html = html.replace(/_____\d+_____/g, function (i, c) {
                         let value = parseInt(i.replace(/_____/g, ""));
-                        if(index <= value){
-                            return ("_____" + (value -1) + "_____");
+                        if (index <= value) {
+                            return ("_____" + (value - 1) + "_____");
                         } else {
                             return i;
                         }
@@ -227,28 +233,26 @@
                     $("#div2").html("");
                     this.showData.analysis.splice(index - 1, 1);
                     $("#div3").html("");
-                    for(let i=index-1; i<this.showData.option.length; i++){
-                        this.showData.option[i].number --;
-                        this.showData.analysis[i].number --;
+                    for (let i = index - 1; i < this.showData.option.length; i++) {
+                        this.showData.option[i].number--;
+                        this.showData.analysis[i].number--;
                     }
                 }
             },
             incrementAdd (data) {
-                console.log(data);
+                this.params.title = data;
             },
             incrementOption (data) {
-                console.log(data);
                 this.showData.option[this.optionIndex].content = data;
             },
             incrementAnalysis (data) {
-                console.log(data);
                 this.showData.analysis[this.analysisIndex].content = data;
             },
             btnToggle (e, type) {
                 let ele = $(e.target),
                     index = parseInt(ele.html()) - 1;
                 ele.addClass('primary').siblings("button").removeClass("primary");
-                switch(type){
+                switch (type) {
                     case "option" :
                         $("#div2").html(this.showData.option[index].content);
                         this.optionIndex = index || 0;
@@ -314,7 +318,7 @@
 </script>
 
 <style>
-    .wangEditor-container .wangEditor-txt p{
+    .wangEditor-container .wangEditor-txt p {
         line-height: 1 !important;
     }
 </style>

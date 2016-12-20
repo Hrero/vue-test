@@ -9,7 +9,6 @@
 </template>
 
 <script>
-    import uploadImage from '../../public/upload/img/javascripts/uploadImage'
     import uploadFile from "../../public/upload/file/uploadFile.vue"
     import ueditor from "../../public/wangEditor.vue"
 

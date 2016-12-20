@@ -8,7 +8,6 @@ import router from "./routes/pageConfig"
 
 Vue.use(vueRouter);
 
-import $ from 'expose?$!jquery'
 //wangeditor
 import "wangeditor/dist/css/wangEditor.min.css"
 import "wangeditor"
