@@ -22,7 +22,15 @@ import "./public/semantic/semantic.min"
 
 //自定义指令
 import "./order"
+import "./mathjax"
 
+/*import latex from "latextomathml"
+console.log(latex.LaTeXtoMathML("(a+b)^{\\frac mn} = \\sqrt[n]{(a+b)^m}"));*/
+
+
+/*$.get("/qiniu",function(data){
+    console.log(data);
+});*/
 
 new Vue({
     el: '#app',

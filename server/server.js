@@ -27,6 +27,9 @@ app.use(session({
 }));
 
 // qiniu
+/*app.use("/qiniu", function(req, res){
+    qiniu.exportWord(req, res);
+});*/
 app.use("/qiniu", qiniu);
 
 // 富文本编辑器
