@@ -7,12 +7,13 @@
 
 <script>
     import uploadRadio from "../../public/upload/radio/uploadRadio.vue"
+    import global from "../../global"
     export default {
         data () {
             return {}
         },
         mounted () {
-
+            console.log(global);
         },
         methods: {
             deleteRadio () {

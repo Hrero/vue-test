@@ -11,6 +11,7 @@
 <script>
     import uploadFile from "../../public/upload/file/uploadFile.vue"
     import ueditor from "../../public/wangEditor.vue"
+     import global from "../../global"
 
 
     export default {
@@ -25,7 +26,7 @@
         },
         computed: {},
         mounted () {
-
+             console.log(global);
         },
         beforeCreate () {
 

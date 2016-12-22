@@ -267,7 +267,7 @@
         },
         mounted () {
             $('.ui.rating').rating();
-            console.log(555);
+            console.log(global);
         },
         watch: {
             "showData.gradeArr" (val, oldVal) {

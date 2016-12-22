@@ -7,13 +7,14 @@
 
 <script>
     import uploadVideo from '../../public/upload/video/uploadVideo';
+     import global from "../../global"
     export default {
         data () {
             return {}
         },
         computed: {},
         mounted () {
-
+             console.log(1555555555577777);
         },
         methods: {
             deleteVideo () {
