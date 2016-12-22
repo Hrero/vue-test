@@ -234,7 +234,7 @@ module.exports = router;
 
 
  var pObj = docx.createP();
- pObj.addText('<?xml version="1.0"?><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"> <mstyle displaystyle="true" scriptlevel="0"> <mrow class="MJX-TeXAtom-ORD"> <msup><mi>x</mi><mn>2</mn></msup></mrow> </mstyle> </math>');
+ pObj.addText('<?xml version="1.0"?><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mstyle displaystyle="true" scriptlevel="0"><mrow class="MJX-TeXAtom-ORD"><msup><mi>x</mi><mn>2</mn></msup></mrow></mstyle></math>');
 
 
  var out = fs.createWriteStream('out.docx');// 文件写入
