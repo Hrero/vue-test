@@ -18,4 +18,16 @@ if(!global.subjectAll){
     });
 }
 
+// 获取课程场景数据
+if(!global.scene){
+    let scene = [];
+    $.get("/course/independent/getSceneByResouseTypeId",{"resourceTypeId":5}).then((data) => {
+        scene = JSON.parse(data);
+    });
+    $.get("/course/independent/getSceneByResouseTypeId",{"resourceTypeId":6}).then((data) => {
+     global.scene =  scene.concat(scene,JSON.parse(data));
+    });
+
+}
+
 module.exports = global;

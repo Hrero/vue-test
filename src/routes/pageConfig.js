@@ -9,6 +9,10 @@ import productManage from "../components/product/productManage"
 //课程管理
 import independentCreate from "../components/course/independent/independentCreate"
 import independentIndexOf from "../components/course/independent/independentIndexOf"
+import smallCourseCreate from "../components/course/small/smallCourseCreate"
+import smallCourseIndexOf from "../components/course/small/smallCourseIndexOf"
+import bigCourseCreate from "../components/course/big/bigCourseCreate"
+import bigCourseIndexOf from "../components/course/big/bigCourseIndexOf"
 //知识点录入
 import knowledgeBasis from "../components/knowledge/knowledgeBasis"
 import knowledgeTextbook from "../components/knowledge/knowledgeTextbook"
@@ -47,6 +51,10 @@ let router = new Router({
             {path: '/course', component: independentIndexOf},
             {path: '/course/independentCreate', component: independentCreate},
             {path: '/course/independentIndexOf', component: independentIndexOf},
+            {path: '/course/bigCourseCreate', component: bigCourseCreate},
+            {path: '/course/bigCourseIndexOf', component: bigCourseIndexOf},
+            {path:"/course/smallCourseCreate",component :smallCourseCreate},
+            {path:"/course/smallCourseIndexOf",component :smallCourseIndexOf},
             //词典
             {path: '/data', component: dataSubject},
             {path: '/data/dataSubject', component: dataSubject},

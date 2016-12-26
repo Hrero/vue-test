@@ -64,6 +64,22 @@ module.exports = {
             href: "/course",
             children: [
                 {
+                    sideBarH: "大课程",
+                    //href:"/course/independentIndexOf",
+                    list: [
+                        {sideBarName: "创建大课程", href: "/course/bigCourseCreate"},
+                        {sideBarName: "大课程检索", href: "/course/bigCourseIndexOf"}
+                    ]
+                },
+                {
+                    sideBarH: "小课程",
+                    //href:"/course/independentIndexOf",
+                    list: [
+                        {sideBarName: "创建小课程", href: "/course/smallCourseCreate"},
+                        {sideBarName: "小课程检索", href: "/course/smallCourseIndexOf"}
+                    ]
+                },
+                {
                     sideBarH: "独立课程",
                     //href:"/course/independentIndexOf",
                     list: [

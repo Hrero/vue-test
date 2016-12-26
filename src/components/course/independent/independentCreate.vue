@@ -78,7 +78,7 @@
                         <option value="/日">日</option>
                     </select>
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-4" >
                     <label>课程难易度</label>
                     <div class="nydLab">
                         <label><input type="radio" value="3" name="difficultStar">难</label>
@@ -101,10 +101,14 @@
                 </div>
             </div>
             <div class="row">
-                <div class="form-group col-md-12 sceneD">
-                    <label>课程场景</label>
+                <div class="form-group col-md-6 sceneD">
+                    <label >课程场景</label>
 
-                    <div class="sceneDiv" style="word-break:break-all;">
+                    <div class="sceneDiv" style="word-break:break-all;" v-if="ajax.sceneData.length>0" >
+                        <a v-for="item in ajax.sceneData" class="ui gray label " style="margin-bottom:.3em"  v-on:click = 'isActive($event)'><font><font>{{item.scene_name}}</font></font><input type="hidden" name="id" :value=" item.id"></a>
+                    </div>
+                    <div class="sceneDiv" style="word-break:break-all;" v-else>
+                        <p style="color: red;text-align: left">没有获取到场景数据..</p>
                     </div>
                 </div>
             </div>
@@ -136,13 +140,14 @@
     import "../../../css/independent/independentCreate.scss"
     import categories from "../../../public/ztree/categories.vue"
     import base from "../../../utils/base"
-
+    import global from "../../../global"
+    import $ from 'jquery'
     export default {
         data () {
-            return {
+            return{
                 //需要提交的数据
                 formStacked: {
-                    "name": "",
+                    "name":"",
                     "idNumber": "",
                     "categoriesCode": "",
                     "rtCategoryCode": "is_001",
@@ -163,6 +168,7 @@
                 ajax: {
                     "retrivalData": "",
                     "gradeData": "",
+                    "sceneData" :global.scene,
                     "subjectData": [{"code": "", "name": "请选择学年"}],
                     "bookTypeData": [{"code": "", "name": "请选择学年、学科"}],
                 },
@@ -174,11 +180,13 @@
                 pickerOptions1: {},
                 formInline: "",
                 categoriesName: "",
-                isShow: true
+                isShow: true,
+                //active : true,
             }
         },
         methods: {
             //接收上课形式模块传回来的name、code
+
             incrementTotal (name, code) {
                 this.formContent.categoriesName = name;
                 this.formStacked.categoriesCode = code;
@@ -195,17 +203,39 @@
             bookTypeSelectChange (val) {
                 this.formStacked.bookType = val;
                 $("#independentCreate").find("[name=bookType]").prop("checked", false);
+            },
+            isActive(e){
+               let ele = e.path;
+                for(let item of ele){
+                    if(item.localName=='a'){
+                        var a = item;
+                        break;
+                    }
+                }
+              if($(a).hasClass("red")){
+                    $(a).siblings().removeClass("red gray").addClass("gray");
+              }else{
+                 $(a).siblings().removeClass("red gray").addClass("gray");
+                 $(a).removeClass("gray").addClass("red");
+              }
             }
         },
+
         created () {
             //获取“课程类型”数据
-            $.get("/course/independent/retrival", function (data) {
+            $.post("/course/independent/retrival", function (data) {
                 this.ajax.retrivalData = JSON.parse(data).msgObject;
             });
             //获取“学年”数据
             $.get("/course/independent/getAllGrade").then((data) => {
                 this.ajax.gradeData = JSON.parse(data);
+
             });
+            // 获取课程场景数据
+
+        },
+        beforeMount(){
+
         },
         mounted () {
             var editor = new wangEditor('div1');
@@ -233,4 +263,5 @@
             categories
         }
     }
+
 </script>
