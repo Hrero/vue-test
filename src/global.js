@@ -29,5 +29,10 @@ if(!global.scene){
     });
 
 }
-
+//获取课程来源
+if(!global.resouseOrigin){
+   $.get("/course/independent/getResouseOriginByResouseTypeId",{"id":5}).then((data)=>{
+       global.resouseOrigin =  JSON.parse(data);
+   });
+}
 module.exports = global;

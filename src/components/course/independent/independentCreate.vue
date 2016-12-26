@@ -117,7 +117,7 @@
                     <label>课程来源</label>
 
                     <div class="originDiv" style="word-break:break-all;">
-
+                        <a v-for="item in ajax.resouseOrigin" class="ui gray label " style="margin-bottom:.3em"  v-on:click = 'isActive($event)'><font><font>{{item.origin_desc}}</font></font><input type="hidden" name="id" :value=" item.id"></a>
                     </div>
                 </div>
             </div>
@@ -169,6 +169,7 @@
                     "retrivalData": "",
                     "gradeData": "",
                     "sceneData" :global.scene,
+                    "resouseOrigin" : global.resouseOrigin,
                     "subjectData": [{"code": "", "name": "请选择学年"}],
                     "bookTypeData": [{"code": "", "name": "请选择学年、学科"}],
                 },
