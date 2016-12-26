@@ -113,7 +113,6 @@
     import base from "../../utils/base"
     import "../../css/questions/questionsCreate.scss"
     import ueditor from "../../public/wangEditor.vue"
-    import global from "../../global"
     export default {
         data () {
             return {
@@ -157,7 +156,7 @@
         },
         created () {
             //学年分类
-            for (let item of global.gradeAll) {
+            for (let item of baseData.gradeAll) {
                 this.ajax.gradeAll.push(item);
                 switch (item.stageCode) {
                     case "1" :
@@ -172,7 +171,7 @@
                 }
             }
             // 学科
-            this.ajax.subjectAll = global.subjectAll;
+            this.ajax.subjectAll = baseData.subjectAll;
         },
         methods: {
             showBox () {
@@ -304,10 +303,14 @@
                 let params = {
                     subjectCode: val
                 };
+                if(this.params.gradeCode){
+                    params.gradeCode = this.params.gradeCode;
+                }
                 $.post("/questions/questionsCreate/getQuestionId", params).then((data) => {
                     data = JSON.parse(data);
                     this.ajax.qusetionAll = data;
-
+                    console.log(data[0].id);
+                    this.params.qusetionType = data[0].id;
                 });
             }
         },

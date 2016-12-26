@@ -14,6 +14,7 @@ import 'ztree'
 import "./public/semantic/semantic.min.css"
 import "./public/semantic/semantic.min"
 import "./mathjax"
+import "./globalData"
 
 //自定义指令
 import "./order"

@@ -1,4 +1,5 @@
 const path = require('path');
+const exec = require('child_process').exec;
 const webpack = require('webpack');
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -78,8 +79,9 @@ if (constant.localhostPort) {
     app.listen(constant.localhostPort, (err) => {
         if (err) {
             console.log(err)
-        } else {
-            console.info('server is running at %d', constant.localhostPort)
+        } else if(!global.type){
+            console.info('server is running at %d', constant.localhostPort);
+            exec("start http://localhost:" + constant.localhostPort);
         }
     })
 } else {
