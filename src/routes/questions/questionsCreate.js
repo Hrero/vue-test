@@ -44,6 +44,14 @@ router.get('/getAllBookType', function (req, res) {
         res.send(data);
     });
 });
+//根据资源类型获取场景
+router.get('/getSceneByResouseTypeId', function (req, res) {
+    let id = req.query.id;
+    let options = http_url.getUrl(global.globalUrl, global.globalPort, questionsCreate.getSceneByResouseTypeId + id, "GET");
+    commonService.request(options, function (data) {
+        res.send(data);
+    });
+});
 
 
 module.exports = router;

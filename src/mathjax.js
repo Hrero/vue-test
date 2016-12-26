@@ -1,12 +1,12 @@
-module.exports = MathJax.Hub.Config({
-    jax: ["input/TeX","output/HTML-CSS"],
+MathJax.Hub.Config({
+    jax: ["input/TeX", "output/HTML-CSS"],
     extensions: ["tex2jax.js"],
     TeX: {
-        extensions: []
+        extensions: ["mhchem.js"]
     },
     tex2jax: {
-        inlineMath: [ ["\\(", "\\)"] ],
-        displayMath: [ ['$$','$$'], ['\\[','\\]'] ]
+        inlineMath: [["\\(", "\\)"]],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
     },
     menuSettings: {
         zoom: "Click",
