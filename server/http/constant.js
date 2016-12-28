@@ -1,6 +1,6 @@
 module.exports = {
 
-    //type:"线上",
+    type:"线上",
 
     localhostPort: "3500",
     difficulty: "100.0",

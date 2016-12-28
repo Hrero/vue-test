@@ -53,7 +53,14 @@
         },
         methods: {
             goLogin () {
-                this.$router.push("/");
+                //this.$router.push("/");
+                let params = {
+                    userName: this.userName,
+                    password: this.userPassword
+                }
+                $.post("/login", params, (data) => {
+                    console.log(data);
+                })
             }
         },
         created () {

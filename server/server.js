@@ -42,11 +42,11 @@ app.use("/upload", function (req, res) {
 require('./log/log')();
 
 // mongodb创建
-require('./mongodb/mongodb')(app);
+//require('./mongodb/mongodb')(app);
 // mongodb连接
 require("./mongodb/logModel");
 // mongodb登录
-require("./mongodb/login")(app);
+//require("./mongodb/login")(app);
 
 // 路由
 require("../src/routes/index")(app);
@@ -79,9 +79,11 @@ if (constant.localhostPort) {
     app.listen(constant.localhostPort, (err) => {
         if (err) {
             console.log(err)
-        } else if(!global.type){
+        } else {
             console.info('server is running at %d', constant.localhostPort);
-            exec("start http://localhost:" + constant.localhostPort);
+            if(!global.type){
+                exec("start http://localhost:" + constant.localhostPort);
+            }
         }
     })
 } else {

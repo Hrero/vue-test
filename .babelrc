@@ -9,6 +9,6 @@
         "transform-runtime"
     ],
     "ignore": [
-        "./public/iconfont/iconfont.js"
+        "./public/common/iconfont/iconfont.js"
     ]
 }

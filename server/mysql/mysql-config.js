@@ -20,6 +20,5 @@ let mysqlConfig = {
     database: 'e-eduspace-service-web',
     port: '3306'
 };
-module.exports = {
-    config: 'mysql://' + mysqlConfig.user + ':' + mysqlConfig.password + '@' + mysqlConfig.host + ':' + mysqlConfig.port + '/' + mysqlConfig.database
-};
+
+module.exports = mysqlConfig;

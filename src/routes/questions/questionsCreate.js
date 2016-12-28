@@ -52,6 +52,14 @@ router.get('/getSceneByResouseTypeId', function (req, res) {
         res.send(data);
     });
 });
+//获取视频列表
+router.post('/getAllSmall', function (req, res) {
+    let params = req.body;
+    let options = http_url.getUrl(global.globalUrl, global.globalPort, questionsCreate.getAllSmall, "POST");
+    commonService.request(options, function (data) {
+        res.send(data);
+    }, params);
+});
 
 
 module.exports = router;

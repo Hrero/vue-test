@@ -5,5 +5,7 @@ module.exports = {
     "getSubjectAll": JEECG + "/rest/subject/all",
     "getQuestionId": JEECG + "/rest/subjectQuestion/retrieval",
     "getAllBookType": JEECG + "/rest/bookType?all",
-    "getSceneByResouseTypeId": JEECG + "/rest/tSceneController/getSceneByResourceId/"//根据资源类型获取场景
+    "getSceneByResouseTypeId": JEECG + "/rest/tSceneController/getSceneByResourceId/",//根据资源类型获取场景
+    "getAllVideo": JEECG + "/rest/resourceVideo/datagrid",
+    "getAllSmall": JEECG + "/rest/courseSmall/getPageBean"
 }

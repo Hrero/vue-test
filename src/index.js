@@ -11,10 +11,12 @@ import "wangeditor/dist/css/wangEditor.min.css"
 import "wangeditor"
 import "ztree/css/zTreeStyle/zTreeStyle.css"
 import 'ztree'
-import "./public/semantic/semantic.min.css"
-import "./public/semantic/semantic.min"
-import "./mathjax"
-import "./globalData"
+import "./public/common/semantic/semantic.min.css"
+import "./public/common/semantic/semantic.min"
+// import "./mathjax"
+
+
+
 
 //自定义指令
 import "./order"
@@ -25,3 +27,4 @@ new Vue({
     router: router,
     components: {App}
 })
+

@@ -6,6 +6,23 @@
     <script src="//cdn.bootcss.com/plupload/2.1.9/plupload.full.min.js"></script><!--上传图片-->
     <script src="http://cdn.staticfile.org/qiniu-js-sdk/1.0.14-beta/qiniu.min.js"></script><!--上传音视频-->
     <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script><!--公式解析-->
+    <script>
+        MathJax.Hub.Config({
+            jax: ["input/TeX", "output/HTML-CSS"],
+            extensions: ["tex2jax.js"],
+            TeX: {
+                extensions: ["mhchem.js"]
+            },
+            tex2jax: {
+                inlineMath: [["\\(", "\\)"]],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            menuSettings: {
+                zoom: "Click",
+                CTRL: false
+            }
+        });
+    </script>
 </head>
 <body>
     <div id="app"></div>

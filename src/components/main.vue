@@ -32,10 +32,13 @@
 </template>
 
 <script>
-    import "../css/main.scss";
-    import "../public/iconfont/iconfont"
-    import sideBar from "../routes/sideBar"
+    // 公共js模块
     import $ from "jquery"
+    import baseData from "../globalData"
+    import "../css/main.scss";
+    import "../public/common/iconfont/iconfont"
+    import sideBar from "../routes/sideBar"
+    console.log(baseData);
     export default {
         data () {
             return {

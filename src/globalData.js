@@ -10,5 +10,6 @@ $.when(
     global.gradeAll = JSON.parse(grade[0]);
     global.subjectAll = JSON.parse(subject[0]);
     global.resouseAll = resouse.concat(JSON.parse(resouse6[0]));
-    window.baseData = global;
 });
+
+module.exports = global;

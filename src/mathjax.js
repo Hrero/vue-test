@@ -5,7 +5,7 @@ MathJax.Hub.Config({
         extensions: ["mhchem.js"]
     },
     tex2jax: {
-        inlineMath: [["\\(", "\\)"]],
+        inlineMath: [['$', '$'],["\\(", "\\)"]],
         displayMath: [['$$', '$$'], ['\\[', '\\]']]
     },
     menuSettings: {
