@@ -25,7 +25,7 @@
         },
         computed: {},
         mounted () {
-
+            console.log(baseData.subjectAll);
         },
         beforeCreate () {
 

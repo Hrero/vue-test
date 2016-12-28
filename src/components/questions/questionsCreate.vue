@@ -105,6 +105,11 @@
                              :dataStyle="style"></ueditor>
                 </div>
             </div>
+            <span @click="pageClick">开始</span>
+            <ul>
+                <li v-for="item in ajax.video.beanData">{{item.name}}</li>
+            </ul>
+            <page :data-page="page1" v-on:page="pageCallback"></page>
         </div>
     </div>
 </template>
@@ -113,6 +118,8 @@
     import base from "../../utils/base"
     import "../../css/questions/questionsCreate.scss"
     import ueditor from "../../public/wangEditor.vue"
+    import page from "../../public/page.vue"
+    //import baseData from "../../globalData"
     export default {
         data () {
             return {
@@ -133,7 +140,8 @@
                     grade3: [],
                     subjectAll: [],
                     qusetionZZ: ["主观题", "客观题", "复合题"],
-                    qusetionAll: []
+                    qusetionAll: [],
+                    video: []
                 },
                 showData: {
                     gradeName: "请选择学年（可多选，不可以跨学年）",
@@ -151,12 +159,14 @@
                 index: [1],
                 deleteIndex: "2",
                 optionIndex: 0,
-                analysisIndex: 0
+                analysisIndex: 0,
+                page1: {}
             }
         },
         created () {
             //学年分类
-            for (let item of baseData.gradeAll) {
+            console.log(baseData);
+           /* for (let item of baseData.gradeAll) {
                 this.ajax.gradeAll.push(item);
                 switch (item.stageCode) {
                     case "1" :
@@ -171,7 +181,7 @@
                 }
             }
             // 学科
-            this.ajax.subjectAll = baseData.subjectAll;
+            this.ajax.subjectAll = baseData.subjectAll;*/
         },
         methods: {
             showBox () {
@@ -218,7 +228,7 @@
                         }
                     }
                     html = html.replace(value, "");
-                    html = html.replace(/_____\d+_____/g, function (i, c) {
+                    html = html.replace(/_____\d+_____/g, function (i) {
                         let value = parseInt(i.replace(/_____/g, ""));
                         if (index <= value) {
                             return ("_____" + (value - 1) + "_____");
@@ -262,6 +272,25 @@
                         this.analysisIndex = index || 0;
                         break;
                 }
+            },
+            pageClick (cp) {
+                //视频
+                let self = this;
+                let params = {cp: 1, pageSize: 5};
+                $.post("/questions/questionsCreate/getAllSmall", params, (data) => {
+                    data = JSON.parse(data);
+                    self.ajax.video = data;
+                    self.page1 = {
+                        //showPage: 7,
+                        countPage: 2,
+                        url: "/questions/questionsCreate/getAllSmall",
+                        type: "post",
+                        params: params
+                    }
+                })
+            },
+            pageCallback (data) {
+                this.ajax.video = data;
             }
         },
         mounted () {
@@ -269,7 +298,7 @@
             console.log(555);
         },
         watch: {
-            "showData.gradeArr" (val, oldVal) {
+            "showData.gradeArr" (val) {
                 let gradeAll = this.ajax.gradeAll,
                     gradeName = [],
                     type = "",
@@ -298,7 +327,7 @@
                 this.params.gradeName = gradeName.join();
                 this.params.gradeCode = val.join();
             },
-            "params.subjectCode" (val, oldVal) {
+            "params.subjectCode" (val) {
                 // 试题类型
                 let params = {
                     subjectCode: val
@@ -315,7 +344,8 @@
             }
         },
         components: {
-            ueditor
+            ueditor,
+            page
         }
     }
 </script>
