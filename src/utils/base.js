@@ -8,5 +8,8 @@ module.exports = {
     "insertSectionPaper": jeecg + "/rest/courseIndependent/insertSectionPaper",
     "getGradeId": jeecg + "/rest/baseGrade/get/",
     "getSceneByResouseTypeId" : jeecg + '/rest/tSceneController/getSceneByResourceId/',//根据资源获取课程场景
-    "getResouseOriginByResouseTypeId" : jeecg + "/rest/rtResourceOriginController/getSceneByResourceId/" //根据资源类型获取来源属性
+    "getResouseOriginByResouseTypeId" : jeecg + "/rest/rtResourceOriginController/getSceneByResourceId/", //根据资源类型获取来源属性,
+    "getSubjectAll": jeecg + "/rest/subject/all",
+    "getQuestionId": jeecg + "/rest/subjectQuestion/retrieval",
+    "getAllBookType": jeecg + "/rest/bookType?all"
 }

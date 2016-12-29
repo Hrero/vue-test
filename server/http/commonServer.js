@@ -37,7 +37,7 @@ exports.request = function request(options, callback, params, NoPrintResult) {
         post_req.abort();
 
         console.log('Request timeout');
-        callback("");
+        //callback("");
     });
     post_req.on('error', function (e) {
         console.log("httpGet : exception " + e.message);

@@ -104,11 +104,16 @@
                 <div class="form-group col-md-6 sceneD">
                     <label >课程场景</label>
 
-                    <div class="sceneDiv" style="word-break:break-all;" v-if="ajax.sceneData.length>0" >
-                        <a v-for="item in ajax.sceneData" class="ui gray label " style="margin-bottom:.3em"  v-on:click = 'isActive($event)'><font><font>{{item.scene_name}}</font></font><input type="hidden" name="id" :value=" item.id"></a>
+                  <!--  <div class="sceneDiv" style="word-break:break-all;" v-if="ajax.sceneData.length>0" >
+                        <a v-for="item in ajax.sceneData" class="ui gray label " style="margin-bottom:.3em"  v-on:click = 'isActive($event)'>{{item.scene_name}}<input type="hidden" name="id" :value=" item.id"></a>
                     </div>
                     <div class="sceneDiv" style="word-break:break-all;" v-else>
                         <p style="color: red;text-align: left">没有获取到场景数据..</p>
+                    </div>-->
+                    <div class="sceneDiv" style="word-break:break-all;">
+                        <a v-for="(item, index) in ajax.sceneData" :class="[indexVal.sceneData == index ? 'red' : 'gray', 'ui label']" style="margin-bottom:.3em"  @click = 'isActive(item.id, "sceneData", index)'>
+                            {{item.scene_name}}
+                        </a>
                     </div>
                 </div>
             </div>
@@ -116,8 +121,13 @@
                 <div class="form-group col-md-12">
                     <label>课程来源</label>
 
+                  <!--  <div class="originDiv" style="word-break:break-all;">
+                        <a v-for="item in ajax.resouseOrigin" class="ui gray label " style="margin-bottom:.3em"  v-on:click = 'isActive($event)'>{{item.origin_desc}}<input type="hidden" name="id" :value=" item.id"></a>
+                    </div>-->
                     <div class="originDiv" style="word-break:break-all;">
-                        <a v-for="item in ajax.resouseOrigin" class="ui gray label " style="margin-bottom:.3em"  v-on:click = 'isActive($event)'><font><font>{{item.origin_desc}}</font></font><input type="hidden" name="id" :value=" item.id"></a>
+                        <a v-for="(item, index) in ajax.resouseOrigin" :class="['ui label', indexVal.resouseOrigin == index ? 'red': 'gray']" style="margin-bottom:.3em"  @click = 'isActive(item.id, "resouseOrigin", index)'>
+                            {{item.origin_desc}}
+                        </a>
                     </div>
                 </div>
             </div>
@@ -140,8 +150,7 @@
     import "../../../css/independent/independentCreate.scss"
     import categories from "../../../public/ztree/categories.vue"
     import base from "../../../utils/base"
-    import global from "../../../global"
-    import $ from 'jquery'
+
     export default {
         data () {
             return{
@@ -153,7 +162,9 @@
                     "rtCategoryCode": "is_001",
                     "gradeCode": "11",
                     "subjectCode": "",
-                    "bookType": ""
+                    "bookType": "",
+                    "sceneData": "",
+                    "resouseOrigin": ""
                 },
                 //显示的数据
                 formContent: {
@@ -166,12 +177,12 @@
                 },
                 //获取的数据
                 ajax: {
-                    "retrivalData": "",
-                    "gradeData": "",
-                    "sceneData" :global.scene,
-                    "resouseOrigin" : global.resouseOrigin,
+                    "retrivalData": [],
+                    "gradeData": [],
+                    "sceneData" : [],
+                    "resouseOrigin" : [],
                     "subjectData": [{"code": "", "name": "请选择学年"}],
-                    "bookTypeData": [{"code": "", "name": "请选择学年、学科"}],
+                    "bookTypeData": [{"code": "", "name": "请选择学年、学科"}]
                 },
                 radio: "",
                 value2: "",
@@ -183,6 +194,10 @@
                 categoriesName: "",
                 isShow: true,
                 //active : true,
+                indexVal: {
+                    "sceneData": 0,
+                    "resouseOrigin": 0
+                }
             }
         },
         methods: {
@@ -203,37 +218,24 @@
             },
             bookTypeSelectChange (val) {
                 this.formStacked.bookType = val;
-                $("#independentCreate").find("[name=bookType]").prop("checked", false);
             },
-            isActive(e){
-               let ele = e.path;
-                for(let item of ele){
-                    if(item.localName=='a'){
-                        var a = item;
-                        break;
-                    }
-                }
-              if($(a).hasClass("red")){
-                    $(a).siblings().removeClass("red gray").addClass("gray");
-              }else{
-                 $(a).siblings().removeClass("red gray").addClass("gray");
-                 $(a).removeClass("gray").addClass("red");
-              }
+            isActive(id, dom, index){
+                this.formStacked[dom] = id;
+                this.indexVal[dom] = index;
             }
         },
 
         created () {
             //获取“课程类型”数据
-            $.post("/course/independent/retrival", function (data) {
+           /* $.post("/course/independent/retrival", function (data) {
                 this.ajax.retrivalData = JSON.parse(data).msgObject;
-            });
+            });*/
             //获取“学年”数据
+            //console.log(baseData,"created");
             $.get("/course/independent/getAllGrade").then((data) => {
                 this.ajax.gradeData = JSON.parse(data);
 
             });
-            // 获取课程场景数据
-
         },
         beforeMount(){
 
@@ -241,6 +243,10 @@
         mounted () {
             var editor = new wangEditor('div1');
             editor.create();
+            /*console.log(baseData,"mounted");
+            console.log(baseData.scene);
+            this.ajax.sceneData = baseData.scene;
+            this.ajax.resouseOrigin = baseData.resouseOrigin;*/
         },
         watch: {
             //根据“学年”获取“学科”

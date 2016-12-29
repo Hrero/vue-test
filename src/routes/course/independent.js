@@ -46,18 +46,22 @@ router.get('/getBookType', function (req, res) {
 });
 //获取课程场景
 router.get("/getSceneByResouseTypeId",function(req,res){
-    var resourceTypeId=req.query['resourceTypeId'];
-    var options = http_url.getUrl(global.globalUrl,global.globalPort,base.getSceneByResouseTypeId+resourceTypeId,"get");
+    var id = req.query.id;
+    var options = http_url.getUrl(global.globalUrl,global.globalPort,base.getSceneByResouseTypeId + id,"get");
     commonService.request(options,function(data){
         res.send(data);
     });
 })
 //获取课程来源
 router.get("/getResouseOriginByResouseTypeId",function (req,res) {
-    var id = req.query['id'];
+    var id = req.query.id;
     var options = http_url.getUrl(global.globalUrl,global.globalPort,base.getResouseOriginByResouseTypeId+ id,"GET");
     commonService.request(options,function (data) {
         res.send(data);
     })
 })
+router.get("/xx", function(req,res){
+    res.send(JSON.stringify(arr));
+})
+
 module.exports = router;
