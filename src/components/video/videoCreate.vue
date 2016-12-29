@@ -13,7 +13,7 @@
         },
         computed: {},
         mounted () {
-            console.log(baseData.gradeAll);
+
         },
         methods: {
             deleteVideo () {

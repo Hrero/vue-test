@@ -12,7 +12,7 @@
             return {}
         },
         mounted () {
-            console.log(baseData);
+
         },
         methods: {
             deleteRadio () {
