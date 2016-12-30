@@ -29,9 +29,6 @@ app.use(session({
 }));
 
 // qiniu
-/*app.use("/qiniu", function(req, res){
-    qiniu.exportWord(req, res);
-});*/
 app.use("/qiniu", qiniu);
 
 // 富文本编辑器
@@ -42,12 +39,8 @@ app.use("/upload", function (req, res) {
 // 日志
 require('./log/log')();
 
-// mongodb创建
-//require('./mongodb/mongodb')(app);
 // mongodb连接
 require("./mongodb/logModel");
-// mongodb登录
-//require("./mongodb/login")(app);
 
 // 路由
 require("../src/routes/index")(app);
@@ -76,32 +69,13 @@ app.use(require('connect-history-api-fallback')());
 //静态文件服务
 app.use(express.static(path.join(__dirname, '../')));
 
-if (constant.localhostPort) {
-    app.listen(constant.localhostPort, (err) => {
-        if (err) {
-            console.log(err)
-        } else {
-            console.info('server is running at %d', constant.localhostPort);
-            if(!global.type){
-                exec("start http://localhost:" + constant.localhostPort);
-            }
+app.listen(constant.localhostPort, (err) => {
+    if (err) {
+        console.log(err)
+    } else {
+        console.info('server is running at %d', constant.localhostPort);
+        if(!global.type){
+            exec("start http://localhost:" + constant.localhostPort);
         }
-    })
-} else {
-    console.error('No port is set')
-}
-
-
-function getUserAccount() {
-    return 5;
-}
-
-function getUserPermissions() {
-    return 6;
-}
-
-axios.all([getUserAccount(), getUserPermissions()])
-    .then(axios.spread(function (acct, perms) {
-        console.log(acct, perms);
-    }));
-console.log(444);
+    }
+})

@@ -103,13 +103,6 @@
             <div class="row">
                 <div class="form-group col-md-6 sceneD">
                     <label >课程场景</label>
-
-                  <!--  <div class="sceneDiv" style="word-break:break-all;" v-if="ajax.sceneData.length>0" >
-                        <a v-for="item in ajax.sceneData" class="ui gray label " style="margin-bottom:.3em"  v-on:click = 'isActive($event)'>{{item.scene_name}}<input type="hidden" name="id" :value=" item.id"></a>
-                    </div>
-                    <div class="sceneDiv" style="word-break:break-all;" v-else>
-                        <p style="color: red;text-align: left">没有获取到场景数据..</p>
-                    </div>-->
                     <div class="sceneDiv" style="word-break:break-all;">
                         <a v-for="(item, index) in ajax.sceneData" :class="[indexVal.sceneData == index ? 'red' : 'gray', 'ui label']" style="margin-bottom:.3em"  @click = 'isActive(item.id, "sceneData", index)'>
                             {{item.scene_name}}
@@ -120,10 +113,6 @@
             <div class="row">
                 <div class="form-group col-md-12">
                     <label>课程来源</label>
-
-                  <!--  <div class="originDiv" style="word-break:break-all;">
-                        <a v-for="item in ajax.resouseOrigin" class="ui gray label " style="margin-bottom:.3em"  v-on:click = 'isActive($event)'>{{item.origin_desc}}<input type="hidden" name="id" :value=" item.id"></a>
-                    </div>-->
                     <div class="originDiv" style="word-break:break-all;">
                         <a v-for="(item, index) in ajax.resouseOrigin" :class="['ui label', indexVal.resouseOrigin == index ? 'red': 'gray']" style="margin-bottom:.3em"  @click = 'isActive(item.id, "resouseOrigin", index)'>
                             {{item.origin_desc}}
@@ -243,10 +232,10 @@
         mounted () {
             var editor = new wangEditor('div1');
             editor.create();
-            /*console.log(baseData,"mounted");
-            console.log(baseData.scene);
-            this.ajax.sceneData = baseData.scene;
-            this.ajax.resouseOrigin = baseData.resouseOrigin;*/
+            let scene56 = baseData.scene5;
+            this.ajax.sceneData = scene56.concat(baseData.scene6);
+            this.ajax.resouseOrigin = baseData.resouseOrigin;
+            scene56 = null;
         },
         watch: {
             //根据“学年”获取“学科”

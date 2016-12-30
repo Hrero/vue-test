@@ -10,6 +10,14 @@ let httpUrl = http_url.getUrl(global.globalUrl, global.globalPort, null, null);
 let baseObj = {};
 let baseUrl = [
     {
+        // 课程来源
+        name: "resouseOrigin",
+        url: base.getResouseOriginByRes,
+        type: "GET",
+        params: {
+            id: 5
+        }
+    },  {
         // 场景5
         name: "scene5",
         url: base.getSceneByResouseTypeId,
@@ -47,11 +55,7 @@ for (let i = 0; i < baseUrl.length; i++) {
         delete baseUrl[i].params;
     }
     axionsHttp(baseUrl[i].url, baseUrl[i].name, baseUrl[i].type, baseUrl[i].params || null, function (data, str) {
-        if(JSON.parse(data)){
-            baseObj[str] = JSON.parse(data);
-        } else {
-            baseObj[str] = data;
-        }
+        baseObj[str] = JSON.parse(data) || data;
     })
 }
 
@@ -70,7 +74,7 @@ router.get('/getData', function (req, res) {
 
 // 从后端获取数据
 router.get('/updateData', function (req, res) {
-    baseObj = {};
+    let baseUpdata = {};
     for (let i = 0; i < baseUrl.length; i++) {
         if (baseUrl[i].type == "GET") {
             let params = baseUrl[i].params;
@@ -80,10 +84,12 @@ router.get('/updateData', function (req, res) {
             delete baseUrl[i].params;
         }
         axionsHttp(baseUrl[i].url, baseUrl[i].name, baseUrl[i].type, baseUrl[i].params || null, function (data, str) {
-            baseObj[str] = data;
-            let list = Object.keys(baseObj);
+            baseUpdata[str] = JSON.parse(data) || data;
+            let list = Object.keys(baseUpdata);
             if (list.length == baseUrl.length) {
-                res.send(baseObj);
+                res.send(baseUpdata);
+                baseObj = baseUpdata;
+                baseUpdata = null;
             }
         })
     }

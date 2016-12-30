@@ -13,7 +13,6 @@ import "ztree/css/zTreeStyle/zTreeStyle.css"
 import 'ztree'
 import "./public/common/semantic/semantic.min.css"
 import "./public/common/semantic/semantic.min"
-// import "./mathjax"
 
 
 

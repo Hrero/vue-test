@@ -32,13 +32,12 @@
 </template>
 
 <script>
-    // 公共js模块
-    import $ from "jquery"
-    import baseData from "../globalData"
-    console.log(baseData.gradeCode);
     import "../css/main.scss";
     import "../public/common/iconfont/iconfont"
     import sideBar from "../routes/sideBar"
+    // 公共js模块
+    import $ from "jquery"
+    import baseData from "../baseData"
     export default {
         data () {
             return {
@@ -66,15 +65,9 @@
         },
         created () {
             this.sideBar = this.sideBarData.product;
-          /*  $.get("/baseGlobal/getBaseGlobal",function(data) {
-                console.log(data)
-            })*/
         },
         mounted () {
-//            console.log(baseData.gradeCode);
-           /* $.get("/baseGlobal/getBaseGlobal",function(data) {
-                console.log(data)
-            })*/
+
         }
     }
 </script>

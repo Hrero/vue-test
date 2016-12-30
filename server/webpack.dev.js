@@ -24,7 +24,7 @@ let config = {
                 test: require.resolve('jquery'),
                 loader: 'expose?jQuery!expose?$'
             },  {
-                test: require.resolve('../src/globalData'),
+                test: require.resolve('../src/baseData'),
                 loader: 'expose?baseData'
             }, {
                 test: /\.vue$/,
