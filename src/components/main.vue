@@ -27,7 +27,6 @@
                 <router-view></router-view>
             </div>
         </div>
-        <p>\(\frac{2}{3}\)</p>
     </div>
 </template>
 

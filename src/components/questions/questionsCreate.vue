@@ -119,7 +119,6 @@
     import "../../css/questions/questionsCreate.scss"
     import ueditor from "../../public/wangEditor.vue"
     import page from "../../public/page.vue"
-    //import baseData from "../../globalData"
     export default {
         data () {
             return {
@@ -164,24 +163,7 @@
             }
         },
         created () {
-            //学年分类
-            console.log(baseData);
-           /* for (let item of baseData.gradeAll) {
-                this.ajax.gradeAll.push(item);
-                switch (item.stageCode) {
-                    case "1" :
-                        this.ajax.grade1.push(item);
-                        break;
-                    case "2" :
-                        this.ajax.grade2.push(item);
-                        break;
-                    case "3" :
-                        this.ajax.grade3.push(item);
-                        break;
-                }
-            }
-            // 学科
-            this.ajax.subjectAll = baseData.subjectAll;*/
+            console.log(baseData.subjectCode);
         },
         methods: {
             showBox () {
@@ -280,6 +262,7 @@
                 $.post("/questions/questionsCreate/getAllSmall", params, (data) => {
                     data = JSON.parse(data);
                     self.ajax.video = data;
+                    //分页
                     self.page1 = {
                         //showPage: 7,
                         countPage: 2,
@@ -295,7 +278,23 @@
         },
         mounted () {
             $('.ui.rating').rating();
-            console.log(global);
+            //学年分类
+            for (let item of baseData.gradeCode) {
+                this.ajax.gradeAll.push(item);
+                switch (item.stageCode) {
+                    case "1" :
+                        this.ajax.grade1.push(item);
+                        break;
+                    case "2" :
+                        this.ajax.grade2.push(item);
+                        break;
+                    case "3" :
+                        this.ajax.grade3.push(item);
+                        break;
+                }
+            }
+            // 学科
+            this.ajax.subjectAll = baseData.subjectCode;
         },
         watch: {
             "showData.gradeArr" (val) {

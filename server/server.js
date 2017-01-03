@@ -5,7 +5,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
-const axios = require("axios");
 
 const qiniu = require("../server/qiniu/qiniu");   //  七牛请求配置文件
 const global = require('./http/constant');

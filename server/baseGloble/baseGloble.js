@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const axios = require("axios");
 const commonServer = require("../http/commonServer");
 const global = require('../http/constant');
 const http_url = require('../http/http_client');
@@ -12,7 +11,7 @@ let baseUrl = [
     {
         // 课程来源
         name: "resouseOrigin",
-        url: base.getResouseOriginByRes,
+        url: base.getResouseOriginByResouseTypeId,
         type: "GET",
         params: {
             id: 5
@@ -41,7 +40,7 @@ let baseUrl = [
     }, {
         // 学科
         name: "subjectCode",
-        url: base.getAllGrade,
+        url: base.getSubjectAll,
         type: "GET"
     }
 ];
