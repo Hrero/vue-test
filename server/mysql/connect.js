@@ -15,6 +15,7 @@ function md5(string) {
     return md5sum.digest('hex');
 }
 
+// 登录
 router.post("/", (req, res) => {
     let params = req.body,
         password = md5(params.password + "这是个秘密"),

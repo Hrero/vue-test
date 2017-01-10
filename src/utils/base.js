@@ -11,5 +11,6 @@ module.exports = {
     "getResouseOriginByResouseTypeId" : jeecg + "/rest/rtResourceOriginController/getSceneByResourceId/", //根据资源类型获取来源属性,
     "getSubjectAll": jeecg + "/rest/subject/all",
     "getQuestionId": jeecg + "/rest/subjectQuestion/retrieval",
-    "getAllBookType": jeecg + "/rest/bookType?all"
+    "getAllBookType": jeecg + "/rest/bookType?all",
+    "getAllKnowlege" : jeecg + '/rest/bookKnowledgeManager/retrieval'
 }

@@ -110,6 +110,41 @@ router.get('/token/audioAnalyzePath', function (req, res) {
     }
 });
 
+//新添加
+router.get('/token/resourcefileAudio', function (req, res) {
+    let scope = qnConf.resourcefileAudio;
+    let uptokenQn = new qiniu.rs.PutPolicy(scope);
+    let token = uptokenQn.token();
+    res.header("Cache-Control", "max-age=0, private, must-revalidate");
+    res.header("Pragma", "no-cache");
+    res.header("Expires", 0);
+    if (token) {
+        res.json({
+            uptoken: token
+        });
+    }
+});
+router.get('/delete/resourcefileAudio', function (req, res) {
+
+    //构建bucketmanager对象
+    let client = new qiniu.rs.Client();
+
+    //你要测试的空间， 并且这个key在你空间中存在
+    bucket = qnConf.resourcefileAudio;
+    key = req.query.file;
+    console.log(key);
+
+    //删除资源
+    client.remove(bucket, key, function (err, ret) {
+        if (!err) {
+            // ok
+            res.send("成功");
+        } else {
+            res.send(err);
+        }
+    });
+});
+
 //听力语音token
 router.get('/token/audioListenPath', function (req, res) {
     let scope = qnConf.audioListenScope;

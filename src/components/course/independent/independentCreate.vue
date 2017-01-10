@@ -15,7 +15,14 @@
                     <input type="text" v-model="formStacked.idNumber" class="form-control" placeholder="业务编号">
                 </div>
                 <div class="form-group col-md-4">
-                    <categories data-id="categoriesCodeZtree" v-on:increment="incrementTotal"></categories>
+                    <div style="position: relative;" class="categoriesBox">
+                        <label>上课形式</label>
+                        <input type="text" v-model="name" readonly="readonly" class="form-control" placeholder="课程类别" />
+                        <input type="hidden" v-model="code"/>
+                        <div :id="dataId" v-show="isShow" class="ztree" :style="style" >
+                            <toolZtree id="zTree1" :ztreeData="ztree.data" :methods="ztree.methods" :ztreeAjax="ztree.ajax"></toolZtree>
+                        </div>
+                    </div>
                 </div>
                 <div class="form-group col-md-4">
                     <label>课程类型</label>
@@ -137,7 +144,7 @@
 
 <script>
     import "../../../css/independent/independentCreate.scss"
-    import categories from "../../../public/ztree/categories.vue"
+    import toolZtree from "../../../public/ztree/toolZtree.vue"
     import base from "../../../utils/base"
 
     export default {
@@ -173,6 +180,26 @@
                     "subjectData": [{"code": "", "name": "请选择学年"}],
                     "bookTypeData": [{"code": "", "name": "请选择学年、学科"}]
                 },
+                ztree: {
+                    methods: {
+                        click: function(event, treeId, treeNode){
+                            this.formContent.categoriesName = treeNode.knowledgeName;
+                            this.formStacked.categoriesCode = treeNode.ctbCode;
+                        }
+                    },
+                    ajax: {
+                        url: "/course/independent/courseCategoriesGetAll",
+                        type: "get"
+                    },
+                    data: {
+                        methods: {
+                            autoOpenAll: true
+                        },
+                        idKey: 'ctbCode',
+                        pIdKey: 'parent',
+                        name: 'name'
+                    }
+                },
                 radio: "",
                 value2: "",
                 masger: "组件independentCreate",
@@ -190,12 +217,6 @@
             }
         },
         methods: {
-            //接收上课形式模块传回来的name、code
-
-            incrementTotal (name, code) {
-                this.formContent.categoriesName = name;
-                this.formStacked.categoriesCode = code;
-            },
             //隐藏“上课形式”模块
             hideBox () {
                 this.isShow = false;
@@ -256,7 +277,7 @@
             }
         },
         components: {
-            categories
+            toolZtree
         }
     }
 

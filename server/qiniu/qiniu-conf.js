@@ -11,6 +11,9 @@ module.exports = {
     //音频解析空间
     audioAnalyzeScope: 'cuotiben-mp3',
     audioAnalyzeScopeUrl: "cuotiben-mp3.qiniudn.com",
+    //
+    resourcefileAudio: "resourcefile-audio",
+    resourcefileAudioUrl: "oiu8castl.bkt.clouddn.com",
     //听力语音空间
     audioListenScope: 'stem',
     //课件空间

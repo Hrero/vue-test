@@ -60,8 +60,14 @@ router.get("/getResouseOriginByResouseTypeId",function (req,res) {
         res.send(data);
     })
 })
-router.get("/xx", function(req,res){
-    res.send(JSON.stringify(arr));
+//教材数
+router.post("/getAllKnowlege",function (req,res) {
+    var params = req.body;
+    var options = http_url.getUrl(global.globalUrl,global.globalPort,base.getAllKnowlege,"POST");
+    commonService.request(options,function (data) {
+        res.send(data);
+    }, params)
 })
+
 
 module.exports = router;

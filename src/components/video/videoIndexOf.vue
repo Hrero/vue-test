@@ -42,7 +42,7 @@
                 this.ueditor = data;
             },
             deleteFile () {
-                $.get("/qiniu/deleteFileId?file=shell.docx").then((data) => {
+                $.get("/qiniu/delete/resourcefileAudio?file=3OH!3 Katy Perry - Starstrukk (feat. Katy Perry).mp3").then((data) => {
                     console.log(data);
                 })
             }
