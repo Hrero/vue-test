@@ -12,5 +12,7 @@ module.exports = {
     "getSubjectAll": jeecg + "/rest/subject/all",
     "getQuestionId": jeecg + "/rest/subjectQuestion/retrieval",
     "getAllBookType": jeecg + "/rest/bookType?all",
-    "getAllKnowlege" : jeecg + '/rest/bookKnowledgeManager/retrieval'
+    "getAllKnowlege" : jeecg + '/rest/bookKnowledgeManager/retrieval',
+    "getQuestionById":'/jeecg/rest/questionManager/get/',
+    "getOmml": "/jeecg/rest/papers/getOmml"
 }

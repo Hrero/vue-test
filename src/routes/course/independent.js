@@ -68,6 +68,22 @@ router.post("/getAllKnowlege",function (req,res) {
         res.send(data);
     }, params)
 })
+// 获取试卷详情
+router.post("/getQuestionById",function (req,res) {
+    var params = req.body;
+    var options = http_url.getUrl(global.globalUrl,global.globalPort,base.getQuestionById + params.subject + '/' + arams.id,"GET");
+    commonService.request(options,function (data) {
+        res.send(data);
+    })
+})
+// 获取omml
+router.post("/getOmml",function (req,res) {
+    var params = req.body;
+    var options = http_url.getUrl(global.globalUrl,global.globalPort,base.getOmml,"POST");
+    commonService.request(options,function (data) {
+        res.send(data);
+    }, params)
+})
 
 
 module.exports = router;
