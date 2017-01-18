@@ -133,9 +133,7 @@
         </div>
     </div>
 </template>
-<style>
 
-</style>
 <script>
     import categories from "../../../public/ztree/categories.vue"
     import base from "../../../utils/base"

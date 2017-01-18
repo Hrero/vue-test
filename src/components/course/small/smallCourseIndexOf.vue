@@ -5,11 +5,7 @@
         <other-component/>
     </div>
 </template>
-<style>
-    body{
-        background-color:#333;
-    }
-</style>
+
 <script>
 
     export default{

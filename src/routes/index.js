@@ -6,8 +6,8 @@ const baseGlobal = require("../../server/baseGloble/baseGloble");
 
 
 module.exports = function (app) {
-    //app.use("/login", mysql);
-    //app.use("/outWord", word);
+    app.use("/login", mysql);
+    // app.use("/outWord", word);
     app.use("/baseGlobal", baseGlobal);
     app.use("/course", course);
     app.use("/questions", questions);

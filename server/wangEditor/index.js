@@ -9,7 +9,7 @@ const path = require('path');
 const UPYUN = require('upyun');
 const random = require('./random');
 const upyunConf = require('./config');
-const upyun = new UPYUN(upyunConf.bucket,upyunConf.operator,upyunConf.password);
+const upyun = new UPYUN(upyunConf.bucket,upyunConf.operator,upyunConf.password, "", "v2");
 // 文件将要上传到哪个文件夹下面
 let uploadfolderpath = 'src/public/upload/img/images';
 
