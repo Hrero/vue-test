@@ -31,8 +31,6 @@ module.exports = {
 
     logDBUrl: "mongodb://localhost/logs",
     sessionDBUrl: "mongodb://localhost/session",
-    //product mode------------------------------------------------------
-    // globalUrl:'product.service.iwrong.cn',
-    // globalPort:"80",
-    time_out: 36000
+
+    time_out: 72000
 };

@@ -38,9 +38,6 @@ app.use("/upload", function (req, res) {
 // 日志
 require('./log/log')();
 
-// mongodb连接
-// require("./mongodb/logModel");
-
 // 路由
 require("../src/routes/index")(app);
 
@@ -73,6 +70,7 @@ app.listen(constant.localhostPort, (err) => {
         console.log(err)
     } else {
         console.info('server is running at %d', constant.localhostPort);
+        // 自动打开页面
         /*if(!global.type){
             exec("start http://localhost:" + constant.localhostPort);
         }*/

@@ -42,7 +42,15 @@
                 this.ueditor = data;
             },
             deleteFile () {
-                $.get("/qiniu/delete/resourcefileAudio?file=3OH!3 Katy Perry - Starstrukk (feat. Katy Perry).mp3").then((data) => {
+                $.post("/mongodb/add", {
+                    operationType: "对方看得见",
+                    product: "发动机打开",
+                    objectType: "发动机打开",
+                    objectTab: "发动机打开",
+                    name: "发动机打开",
+                    code: "发动机打开",
+                    time: 333333333
+                }).then((data) => {
                     console.log(data);
                 })
             }

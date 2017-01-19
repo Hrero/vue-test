@@ -9,6 +9,7 @@ const path = require('path');
 const UPYUN = require('upyun');
 const random = require('./random');
 const upyunConf = require('./config');
+const exec = require('child_process').exec;
 const upyun = new UPYUN(upyunConf.bucket,upyunConf.operator,upyunConf.password, "", "v2");
 // 文件将要上传到哪个文件夹下面
 let uploadfolderpath = 'src/public/upload/img/images';
@@ -21,13 +22,9 @@ let ueditor = function(req, res){
 			return console.log('formidable, form.parse err');
 		}
 		let item;
-		if (length === 0) {
-            let length = 0;
-            for (item in files) {
-                length++;
-            }
-			console.log('files no data');
-			return;
+		let length = Object.keys(files).length;
+		if(length && length == 0){
+            return;
 		}
 		for (item in files) {
 			let file = files[item];
@@ -54,17 +51,19 @@ let ueditor = function(req, res){
 					let path1='/'+ d.getFullYear() + (d.getMonth()+1) + d.getDate() + '/';
 					let time = d.getTime();
 					let filePath = path1 + time + random(4) + '.png';
-					upyun.uploadFile(filePath,filenewpath,type,true,function(upErr1,result){
-							fs.unlink(filenewpath);
-							if(result.statusCode == 200){
-									console.log('图片上传upyun成功：' + upyunConf.url + '' + filePath)
-									result = upyunConf.url + '' + filePath;
-									res.send(result);
-							}else{
-									console.log('upyun上传错误：' + upErr1);
-									console.log('图片上传upyun失败');
-							}
-					})
+                    exec("gulp miniImg", function(){
+                        upyun.uploadFile(filePath,filenewpath,type,true,function(upErr1,result){
+                            fs.unlink(filenewpath);
+                            if(result.statusCode == 200){
+                                console.log('图片上传upyun成功：' + upyunConf.url + '' + filePath)
+                                result = upyunConf.url + '' + filePath;
+                                res.send(result);
+                            }else{
+                                console.log('upyun上传错误：' + upErr1);
+                                console.log('图片上传upyun失败');
+                            }
+                        })
+					});
 				}
 			});
 		}
