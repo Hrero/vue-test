@@ -9,7 +9,7 @@ const path = require('path');
 const UPYUN = require('upyun');
 const random = require('./random');
 const upyunConf = require('./config');
-const exec = require('child_process').exec;
+//const exec = require('child_process').exec;
 const upyun = new UPYUN(upyunConf.bucket,upyunConf.operator,upyunConf.password, "", "v2");
 // 文件将要上传到哪个文件夹下面
 let uploadfolderpath = 'src/public/upload/img/images';
@@ -51,7 +51,7 @@ let ueditor = function(req, res){
 					let path1='/'+ d.getFullYear() + (d.getMonth()+1) + d.getDate() + '/';
 					let time = d.getTime();
 					let filePath = path1 + time + random(4) + '.png';
-                    exec("gulp miniImg", function(){
+                    //exec("gulp miniImg", function(){
                         upyun.uploadFile(filePath,filenewpath,type,true,function(upErr1,result){
                             fs.unlink(filenewpath);
                             if(result.statusCode == 200){
@@ -63,7 +63,7 @@ let ueditor = function(req, res){
                                 console.log('图片上传upyun失败');
                             }
                         })
-					});
+					//});
 				}
 			});
 		}

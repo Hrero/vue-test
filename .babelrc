@@ -3,12 +3,14 @@
         "es2015"
     ],
     "plugins": [
-        "typecheck",
-        "syntax-flow",
-        "transform-flow-strip-types",
-        "transform-runtime"
+
+
     ],
     "ignore": [
-        "./public/common/iconfont/iconfont.js"
+        "./public/common/iconfont/iconfont.js",
+        "./public/common/semantic/semantic.min.js",
+        "./public/common/wangEditor/js/wangEditor.js",
+        "./public/common/ztree/jquery.ztree.all.min.js",
+        "./public/common/jquery.js"
     ]
 }

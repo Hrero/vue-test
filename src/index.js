@@ -7,10 +7,10 @@ import router from "./routes/pageConfig"
 Vue.use(vueRouter);
 
 //第三方
-import "wangeditor/dist/css/wangEditor.min.css"
-import "wangeditor"
-import "ztree/css/zTreeStyle/zTreeStyle.css"
-import 'ztree'
+import "./public/common/wangEditor/css/wangEditor.min.css"
+import "./public/common/wangEditor/js/wangEditor"
+import "./public/common/ztree/zTreeStyle.css"
+import './public/common/ztree/jquery.ztree.all.min'
 import "./public/common/semantic/semantic.min.css"
 import "./public/common/semantic/semantic.min"
 

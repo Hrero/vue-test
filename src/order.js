@@ -1,5 +1,4 @@
 import Vue from 'vue'
-import $ from "jquery"
 
 
 // 富文本公式

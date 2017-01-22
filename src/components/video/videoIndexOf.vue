@@ -42,7 +42,7 @@
                 this.ueditor = data;
             },
             deleteFile () {
-                $.post("/mongodb/add", {
+                $.post("/mongodb/find", {
                     operationType: "对方看得见",
                     product: "发动机打开",
                     objectType: "发动机打开",

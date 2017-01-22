@@ -35,7 +35,7 @@
     import "../public/common/iconfont/iconfont"
     import sideBar from "../routes/sideBar"
     // 公共js模块
-    import $ from "jquery"
+    import $ from "../public/common/jquery"
     import baseData from "../baseData"
     export default {
         data () {
