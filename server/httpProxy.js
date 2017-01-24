@@ -8,7 +8,16 @@ var http = require('http'),
 
 proxy.on('proxyReq', function(proxyReq, req, res, options) {
     proxyReq.setHeader('X-Special-Proxy-Header', 'foobar');
-    console.log(proxyReq, req, res, options);
+});
+
+proxy.on('proxyRes', function (proxyRes, req, res) {
+    let url = req.url;
+    if(req.url.indexOf("/baseGlobal/updateByValue") != -1){
+        servers.forEach(item => {
+            http.get(item.target + url);
+        })
+    }
+    console.log(url);
 });
 
 proxy.on("error", function(err){

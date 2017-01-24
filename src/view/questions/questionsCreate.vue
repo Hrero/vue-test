@@ -105,6 +105,7 @@
                              :dataStyle="style"></ueditor>
                 </div>
             </div>
+            <span @click="cc">cccc</span>
             <span @click="pageClick">开始</span>
             <ul>
                 <li v-for="item in ajax.video.beanData">{{item.name}}</li>
@@ -273,6 +274,11 @@
             },
             pageCallback (data) {
                 this.ajax.video = data;
+            },
+            cc () {
+                $.get("/baseGlobal/updateByValue?update=resouseOrigin", function(data){
+                    console.log(data);
+                })
             }
         },
         mounted () {
@@ -351,5 +357,8 @@
 <style>
     .wangEditor-container .wangEditor-txt p {
         line-height: 1 !important;
+    }
+    .cc {
+        background: red;
     }
 </style>

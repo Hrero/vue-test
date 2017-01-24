@@ -25,73 +25,7 @@
         },
         computed: {},
         mounted () {
-            var xx = 0;
-            function fn(){
-                $.get("/login/user", function(data){
-                    if(data == "dd"){
-                        xx++;
-                        console.log(xx);
-                    }
-                });
-            }
-            var num = 3000;
-            setTimeout(function(){
-                for(var i = 0; i<num; i++){
-                    setTimeout(fn, 0.5)
-                }
-            },4000);
 
-            /*setTimeout(function(){
-                for(let i =0; i<10000; i++){
-                    $.get("/login/user");
-                }
-            },5000);
-            setTimeout(function(){
-                for(let i =0; i<10000; i++){
-                    $.get("/login/user");
-                }
-            },5000);
-            setTimeout(function(){
-                for(let i =0; i<10000; i++){
-                    $.get("/login/user");
-                }
-            },5000);
-            setTimeout(function(){
-                for(let i =0; i<10000; i++){
-                    $.get("/login/user");
-                }
-            },5000);
-            setTimeout(function(){
-                for(let i =0; i<10000; i++){
-                    $.get("/login/user");
-                }
-            },5000);
-            setTimeout(function(){
-                for(let i =0; i<10000; i++){
-                    $.get("/login/user");
-                }
-            },5000);
-            setTimeout(function(){
-                for(let i =0; i<10000; i++){
-                    $.get("/login/user");
-                }
-            },5000);
-            setTimeout(function(){
-                for(let i =0; i<10000; i++){
-                    $.get("/login/user");
-                }
-            },5000);
-            setTimeout(function(){
-                for(let i =0; i<10000; i++){
-                    $.get("/login/user");
-                }
-            },5000);
-            setTimeout(function(){
-                for(let i =0; i<10000; i++){
-                    $.get("/login/user");
-                }
-            },5000);*/
-//            console.log(num);
         },
         beforeCreate () {
 
