@@ -108,7 +108,7 @@ router.get('/updateByValue', function (req, res) {
             }
             axionsHttp(baseUrl[i].url, baseUrl[i].name, baseUrl[i].type, baseUrl[i].params || null, function (data, str) {
                 baseObj[str] = JSON.parse(data) || data;
-                req.send(baseObj);
+                res.send(baseObj);
             });
             break;
         }
