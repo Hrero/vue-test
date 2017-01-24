@@ -1,24 +1,24 @@
 import Vue from 'vue'
 import vueRouter from "vue-router"
-import App from './components/App'
-import router from "./routes/pageConfig"
+import App from './view/App'
+import router from "./vueRoutes/pageConfig"
 
 
 Vue.use(vueRouter);
 
 //第三方
-import "./public/common/wangEditor/css/wangEditor.min.css"
-import "./public/common/wangEditor/js/wangEditor"
-import "./public/common/ztree/zTreeStyle.css"
-import './public/common/ztree/jquery.ztree.all.min'
-import "./public/common/semantic/semantic.min.css"
-import "./public/common/semantic/semantic.min"
+import "./external/wangEditor/css/wangEditor.min.css"
+import "./external/wangEditor/js/wangEditor"
+import "./external/ztree/zTreeStyle.css"
+import './external/ztree/jquery.ztree.all.min'
+import "./external/semantic/semantic.min.css"
+import "./external/semantic/semantic.min"
 
 
 
 
 //自定义指令
-import "./order"
+import "./vue/order"
 
 new Vue({
     el: '#app',

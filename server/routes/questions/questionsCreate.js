@@ -1,0 +1,66 @@
+var express = require('express');
+var router = express.Router();
+
+const commonService = require('../../config/http/commonServer');
+const global = require('../../config/http/constant');
+const http_url = require('../../config/http/http_client');
+const questionsCreate = require("../../utils/questionsCreate");
+
+
+//获取学年
+router.get('/getAllGrade', function (req, res) {
+    let options = http_url.getUrl(global.globalUrl, global.globalPort, questionsCreate.getAllGrade, "GET");
+    commonService.request(options, function (data) {
+        res.send(data);
+    });
+});
+//获取 code 获取 学年
+router.get('/getGradeCodeById', function (req, res) {
+    let id = req.query.id;
+    let options = http_url.getUrl(global.globalUrl, global.globalPort, questionsCreate.getGradeCodeById + id, "GET");
+    commonService.request(options, function (data) {
+        res.send(data);
+    });
+});
+//获取 学科
+router.get('/getSubjectAll', function (req, res) {
+    let options = http_url.getUrl(global.globalUrl, global.globalPort, questionsCreate.getSubjectAll, "GET");
+    commonService.request(options, function (data) {
+        res.send(data);
+    });
+});
+//获取 试题类型
+router.post("/getQuestionId", (req, res) => {
+    let params = req.body;
+    let options = http_url.getUrl(global.globalUrl, global.globalPort, questionsCreate.getQuestionId, "POST");
+    commonService.request(options, function (data) {
+        res.send(data);
+    },params);
+});
+//获取教材
+router.get('/getAllBookType', function (req, res) {
+
+    let options = http_url.getUrl(global.globalUrl, global.globalPort, questionsCreate.getAllBookType, "GET");
+    commonService.request(options, function (data) {
+        res.send(data);
+    });
+});
+//根据资源类型获取场景
+router.get('/getSceneByResouseTypeId', function (req, res) {
+    let id = req.query.id;
+    let options = http_url.getUrl(global.globalUrl, global.globalPort, questionsCreate.getSceneByResouseTypeId + id, "GET");
+    commonService.request(options, function (data) {
+        res.send(data);
+    });
+});
+//获取视频列表
+router.post('/getAllSmall', function (req, res) {
+    let params = req.body;
+    let options = http_url.getUrl(global.globalUrl, global.globalPort, questionsCreate.getAllSmall, "POST");
+    commonService.request(options, function (data) {
+        res.send(data);
+    }, params);
+});
+
+
+module.exports = router;

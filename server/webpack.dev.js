@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
-const global = require("../server/http/constant");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const projectRootPath = path.resolve(__dirname, '../');
 
 let config = {
@@ -9,7 +10,7 @@ let config = {
     ],
     output: {
         path: path.resolve(projectRootPath, './dist'),
-        filename: 'bundle.js',
+        filename: 'js/build.js',
         publicPath: '/dist/'
     },
     resolve: {
@@ -21,10 +22,10 @@ let config = {
     module: {
         loaders: [
             {
-                test: require.resolve('../src/public/common/jquery'),
+                test: require.resolve('../src/external/jquery'),
                 loader: 'expose?jQuery!expose?$'
             },  {
-                test: require.resolve('../src/baseData'),
+                test: require.resolve('../src/vue/baseData'),
                 loader: 'expose?baseData'
             }, {
                 test: /\.vue$/,
@@ -38,20 +39,21 @@ let config = {
                 test: /\.json$/,
                 loader: 'json',
                 exclude: /node_modules/
-            }, {
-                test: /\.css$/,
-                loader: 'style!css',
-                exclude: /node_modules/
-            }, {
+            },  {
                 test: /\.scss$/,
-                loader: 'style!css!sass?sourceMap',
+                loader: ExtractTextPlugin.extract( "style", "css!sass"),
                 exclude: /node_modules/
+            },{
+                test: /\.css$/,
+                loader: ExtractTextPlugin.extract( "style", "css"),
+                exclude: /node_modules/,
             }, {
                 test: /\.(woff|svg|ttf|eot|woff2)(\?.*)?$/,
                 loader: "url",
                 exclude: /node_modules/,
                 query: {
-                    limit: 10000
+                    limit: 10000,
+                    name: "font/[name].[hash:8].[ext]"
                 }
             }, {
                 test: /\.(png|jpg|gif)$/,
@@ -59,30 +61,39 @@ let config = {
                 exclude: /node_modules/,
                 query: {
                     limit: 10000,
-                    name: "image/[hash:8].[name].[ext]"
+                    name: "image/[name].[hash:8].[ext]"
                 }
             }
         ]
+    },
+    vue: {
+        loaders: {
+            sass: ExtractTextPlugin.extract('vue-style', 'css!sass'),
+            css: ExtractTextPlugin.extract('vue-style', 'css')
+        },
     },
     plugins: [
         new webpack.DefinePlugin({
             "process.env": {
                 NODE_ENV: JSON.stringify(process.env.NODE_ENV)
             }
-        })
+        }),
+        new HtmlWebpackPlugin({
+            template: './index.html',
+            inject: false
+        }),
+        new ExtractTextPlugin("css/styles.css")
     ]
 }
 
 //添加hotreplace支持
-if (process.env.NODE_ENV !== 'production' && !global.type) {
+if (process.env.NODE_ENV !== 'production') {
     config.devtool = 'eval';
     config.entry.unshift('webpack-hot-middleware/client');
     config.plugins.unshift(new webpack.HotModuleReplacementPlugin());
-}
-
-// 压缩文件
-if(global.type){
+} else {
     config.plugins.unshift(
+        // 压缩文件
         new webpack.optimize.UglifyJsPlugin({
             compress: {
                 warnings: false
@@ -90,5 +101,6 @@ if(global.type){
         })
     );
 }
+
 
 module.exports = config;

@@ -5,12 +5,13 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
+const fs = require("fs");
 
-const qiniu = require("../server/qiniu/qiniu");   //  七牛请求配置文件
-const global = require('./http/constant');
-const constent = require("./http/constant");
-const ueditor = require('../server/wangEditor/index');
-const constant = require("../server/http/constant");
+const qiniu = require("./routes/qiniu/qiniu");   //  七牛请求配置文件
+const ueditor = require('./routes/uploadImg/index');
+const constant = require("./config/http/constant");
+let htmlUrl = "";
+// process.env.NODE_ENV = "production";
 const app = express();
 
 //req.body
@@ -22,7 +23,7 @@ app.use(session({
     rolling: true,
     resave: true,
     saveUninitialized: true,
-    store: new MongoStore({url: constent.sessionDBUrl}),
+    store: new MongoStore({url: constant.sessionDBUrl}),
     cookie: {secure: true},
     cookie: {maxAge: 60 * 60 * 1000}
 }));
@@ -31,22 +32,23 @@ app.use(session({
 app.use("/qiniu", qiniu);
 
 // 富文本编辑器
-app.use("/upload", function (req, res) {
+app.use("/uploadImg", function (req, res) {
     ueditor(req, res);
 });
 
 // 日志
-require('./log/log')();
+require('./config/log/log')();
 
 // 路由
-require("../src/routes/index")(app);
+require("./routes/index")(app);
 
 //webpack中间件配置，包括hotReplace
-if (!global.type) {
+if (process.env.NODE_ENV !== 'production') {
     const wpConfig = require('./webpack.dev.js');
     const compiler = webpack(wpConfig);
     const webpackMiddleware = require("webpack-dev-middleware");
     const webpackHotMiddleware = require('webpack-hot-middleware');
+    htmlUrl = "./index.html";
 
     app.use(webpackMiddleware(compiler, {
         publicPath: wpConfig.output.publicPath,
@@ -57,6 +59,8 @@ if (!global.type) {
         }
     }));
     app.use(webpackHotMiddleware(compiler));
+} else {
+    htmlUrl = "./dist/index.html";
 }
 
 //vue 路由支持
@@ -65,14 +69,21 @@ app.use(require('connect-history-api-fallback')());
 //静态文件服务
 app.use(express.static(path.join(__dirname, '../')));
 
+// 加载html文件
+app.get("/", function(req, res){
+    fs.readFile(htmlUrl, function (err,data){
+        res.end(data);
+    });
+});
+
 app.listen(constant.localhostPort, (err) => {
     if (err) {
         console.log(err)
     } else {
         console.info('server is running at %d', constant.localhostPort);
         // 自动打开页面
-        /*if(!global.type){
-            exec("start http://localhost:" + constant.localhostPort);
-        }*/
+        /*if(process.env.NODE_ENV !== 'production'){
+         exec("start http://localhost:" + constant.localhostPort);
+         }*/
     }
 })

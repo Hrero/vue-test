@@ -2,15 +2,12 @@
     "presets": [
         "es2015"
     ],
-    "plugins": [
-
-
-    ],
     "ignore": [
-        "./public/common/iconfont/iconfont.js",
-        "./public/common/semantic/semantic.min.js",
-        "./public/common/wangEditor/js/wangEditor.js",
-        "./public/common/ztree/jquery.ztree.all.min.js",
-        "./public/common/jquery.js"
+        "./src/external/iconfont/iconfont.js",
+        "./src/external/semantic/semantic.min.js",
+        "./src/external/wangEditor/js/wangEditor.js",
+        "./src/external/ztree/jquery.ztree.all.min.js",
+        "./src/external/jquery.js",
+        "./src/vue/script.js"
     ]
 }
