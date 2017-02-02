@@ -19,6 +19,8 @@ import "./external/semantic/semantic.min"
 
 //自定义指令
 import "./vue/order"
+// mathjax 配置
+import "./vue/mathjaxConfig"
 
 new Vue({
     el: '#app',

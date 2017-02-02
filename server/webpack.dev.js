@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const projectRootPath = path.resolve(__dirname, '../');
+// process.env.NODE_ENV = "production";
 
 let config = {
     entry: [
@@ -79,7 +80,8 @@ let config = {
             }
         }),
         new HtmlWebpackPlugin({
-            template: './index.html',
+            template: './app.html',
+            filename: "app.html",
             inject: false
         }),
         new ExtractTextPlugin("css/styles.css")

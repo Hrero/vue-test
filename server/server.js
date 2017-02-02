@@ -48,7 +48,7 @@ if (process.env.NODE_ENV !== 'production') {
     const compiler = webpack(wpConfig);
     const webpackMiddleware = require("webpack-dev-middleware");
     const webpackHotMiddleware = require('webpack-hot-middleware');
-    htmlUrl = "./index.html";
+    htmlUrl = "./app.html";
 
     app.use(webpackMiddleware(compiler, {
         publicPath: wpConfig.output.publicPath,
@@ -60,7 +60,7 @@ if (process.env.NODE_ENV !== 'production') {
     }));
     app.use(webpackHotMiddleware(compiler));
 } else {
-    htmlUrl = "./dist/index.html";
+    htmlUrl = "./dist/app.html";
 }
 
 //vue 路由支持
@@ -70,7 +70,7 @@ app.use(require('connect-history-api-fallback')());
 app.use(express.static(path.join(__dirname, '../')));
 
 // 加载html文件
-app.get("/", function(req, res){
+app.use("/", function(req, res){
     fs.readFile(htmlUrl, function (err,data){
         res.end(data);
     });

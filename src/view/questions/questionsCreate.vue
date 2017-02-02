@@ -105,8 +105,9 @@
                              :dataStyle="style"></ueditor>
                 </div>
             </div>
-            <span @click="cc">cccc</span>
-            <span @click="pageClick">开始</span>
+            <p @click="cc">跟新全局数据</p>
+            <p @click="zz">启动暂停的服务</p>
+            <p @click="pageClick">开始</p>
             <ul>
                 <li v-for="item in ajax.video.beanData">{{item.name}}</li>
             </ul>
@@ -277,6 +278,11 @@
             },
             cc () {
                 $.get("/baseGlobal/updateByValue?update=resouseOrigin", function(data){
+                    console.log(data);
+                })
+            },
+            zz () {
+                $.get("/baseGlobal/startServer", function(data){
                     console.log(data);
                 })
             }
