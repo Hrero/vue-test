@@ -1,12 +1,12 @@
-let global = null;
+let baseData = null;
 
 // 直接从node中获取数据
 $.ajax({
-    url: "/baseGlobal/getData",
+    url: "/baseGlobal/getaDta",
     type: "get",
     async: false,
     success (data) {
-        global = data;
+        baseData = data;
     }
 });
 
@@ -21,4 +21,4 @@ $.ajax({
 });*/
 
 
-module.exports = global;
+module.exports = baseData;

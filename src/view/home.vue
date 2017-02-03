@@ -35,7 +35,7 @@
     import "../external/iconfont/iconfont"
     import sideBar from "../vueRoutes/sideBar"
     // 公共js模块
-    import $ from "../external/jquery"
+    import $ from "../external/jquery.min"
     import baseData from "../vue/baseData"
     export default {
         data () {

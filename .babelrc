@@ -5,9 +5,8 @@
     "ignore": [
         "./src/external/iconfont/iconfont.js",
         "./src/external/semantic/semantic.min.js",
-        "./src/external/wangEditor/js/wangEditor.js",
+        "./src/external/wangEditor/js/wangEditor.min.js",
         "./src/external/ztree/jquery.ztree.all.min.js",
-        "./src/external/jquery.js",
-        "./src/vue/script.js"
+        "./src/external/jquery.min.js"
     ]
 }

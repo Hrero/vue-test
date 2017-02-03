@@ -16,7 +16,7 @@ function md5(string) {
 }
 
 // 登录
-router.get("/", (req, res) => {
+router.post("/", (req, res) => {
     let params = req.body,
         password = md5(params.password + "这是个秘密"),
         sql = " SELECT us.*, role.role_id, stage.stage_id, `subject`.subject_id \

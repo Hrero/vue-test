@@ -24,8 +24,7 @@ app.use(session({
     resave: true,
     saveUninitialized: true,
     store: new MongoStore({url: constant.sessionDBUrl}),
-    cookie: {secure: true},
-    cookie: {maxAge: 60 * 60 * 1000}
+    cookie: {secure: true, maxAge: 60 * 60 * 1000}
 }));
 
 // qiniu

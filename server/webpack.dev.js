@@ -12,7 +12,8 @@ let config = {
     output: {
         path: path.resolve(projectRootPath, './dist'),
         filename: 'js/build.js',
-        publicPath: '/dist/'
+        publicPath: '/dist/',
+        chunkFilename: "js/[name].build.js?[chunkhash]"
     },
     resolve: {
         extensions: ['', '.js', '.vue'],
@@ -23,7 +24,7 @@ let config = {
     module: {
         loaders: [
             {
-                test: require.resolve('../src/external/jquery'),
+                test: require.resolve('../src/external/jquery.min'),
                 loader: 'expose?jQuery!expose?$'
             },  {
                 test: require.resolve('../src/vue/baseData'),
