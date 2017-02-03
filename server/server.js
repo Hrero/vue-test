@@ -85,4 +85,4 @@ app.listen(constant.localhostPort, (err) => {
          exec("start http://localhost:" + constant.localhostPort);
          }*/
     }
-})
+});

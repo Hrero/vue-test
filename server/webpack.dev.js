@@ -32,35 +32,49 @@ let config = {
             }, {
                 test: /\.vue$/,
                 loader: 'vue',
-                exclude: /node_modules/
+                exclude: /node_modules/,
+                include: [
+                    path.join(projectRootPath, 'src')
+                ]
             }, {
                 test: /\.js$/,
                 loader: 'babel',
-                exclude: /node_modules/
+                exclude: /node_modules/,
+                include: [
+                    path.join(projectRootPath, 'src')
+                ]
             }, {
-                test: /\.json$/,
-                loader: 'json',
-                exclude: /node_modules/
-            },  {
                 test: /\.scss$/,
                 loader: ExtractTextPlugin.extract( "style", "css!sass"),
-                exclude: /node_modules/
+                exclude: /node_modules/,
+                include: [
+                    path.join(projectRootPath, 'src')
+                ]
             },{
                 test: /\.css$/,
                 loader: ExtractTextPlugin.extract( "style", "css"),
                 exclude: /node_modules/,
+                include: [
+                    path.join(projectRootPath, 'src')
+                ]
             }, {
                 test: /\.(woff|svg|ttf|eot|woff2)(\?.*)?$/,
-                loader: "url",
+                loader: "file",
                 exclude: /node_modules/,
+                include: [
+                    path.join(projectRootPath, 'src')
+                ],
                 query: {
                     limit: 10000,
                     name: "font/[name].[hash:8].[ext]"
                 }
             }, {
                 test: /\.(png|jpg|gif)$/,
-                loader: "url",
+                loader: "file",
                 exclude: /node_modules/,
+                include: [
+                    path.join(projectRootPath, 'src')
+                ],
                 query: {
                     limit: 10000,
                     name: "image/[name].[hash:8].[ext]"
