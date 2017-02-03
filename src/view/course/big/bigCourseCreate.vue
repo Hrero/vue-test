@@ -17,9 +17,3 @@
         }
     }
 </script>
-
-<style>
-    .cc {
-        background: red;
-    }
-</style>

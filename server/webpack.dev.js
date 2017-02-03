@@ -12,8 +12,8 @@ let config = {
     output: {
         path: path.resolve(projectRootPath, './dist'),
         filename: 'js/build.js',
-        publicPath: '/dist/',
-        chunkFilename: "js/[name].build.js?[chunkhash]"
+        chunkFilename: "js/[name].build.js?[chunkhash]",
+        publicPath: '/dist/'
     },
     resolve: {
         extensions: ['', '.js', '.vue'],
