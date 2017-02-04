@@ -26,7 +26,7 @@ let config = {
             {
                 test: require.resolve('../src/external/jquery.min'),
                 loader: 'expose?jQuery!expose?$'
-            },  {
+            }, {
                 test: require.resolve('../src/vue/baseData'),
                 loader: 'expose?baseData'
             }, {
@@ -34,35 +34,35 @@ let config = {
                 loader: 'vue',
                 exclude: /node_modules/,
                 include: [
-                    path.join(projectRootPath, 'src')
+                    path.join(projectRootPath, './src')
                 ]
             }, {
                 test: /\.js$/,
                 loader: 'babel',
                 exclude: /node_modules/,
                 include: [
-                    path.join(projectRootPath, 'src')
+                    path.join(projectRootPath, './src')
                 ]
             }, {
                 test: /\.scss$/,
-                loader: ExtractTextPlugin.extract( "style", "css!sass"),
+                loader: ExtractTextPlugin.extract("style", "css!sass"),
                 exclude: /node_modules/,
                 include: [
-                    path.join(projectRootPath, 'src')
+                    path.join(projectRootPath, './src')
                 ]
-            },{
+            }, {
                 test: /\.css$/,
-                loader: ExtractTextPlugin.extract( "style", "css"),
+                loader: ExtractTextPlugin.extract("style", "css"),
                 exclude: /node_modules/,
                 include: [
-                    path.join(projectRootPath, 'src')
+                    path.join(projectRootPath, './src')
                 ]
             }, {
                 test: /\.(woff|svg|ttf|eot|woff2)(\?.*)?$/,
                 loader: "file",
                 exclude: /node_modules/,
                 include: [
-                    path.join(projectRootPath, 'src')
+                    path.join(projectRootPath, './src')
                 ],
                 query: {
                     limit: 10000,
@@ -73,7 +73,7 @@ let config = {
                 loader: "file",
                 exclude: /node_modules/,
                 include: [
-                    path.join(projectRootPath, 'src')
+                    path.join(projectRootPath, './src')
                 ],
                 query: {
                     limit: 10000,
